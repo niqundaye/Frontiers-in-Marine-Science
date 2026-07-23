@@ -53,6 +53,20 @@ transformation result used for review.
 
 - `data/paper/`: exact transcriptions of article Tables 1–4.
 - `data/processed/manuscript_figures/`: DOCX-extracted figure panels and hash manifest.
-- `data/public/`: downloaded public series and retrieval catalog.
+- `data/public/`: downloaded public series and retrieval catalog. Detailed official
+  extracts preserve `reported_value`, `reported_unit`, the numeric
+  `normalization_multiplier`, normalized `value`/`unit`, official `source_url`,
+  retrieval date, source-page SHA-256 and the label `经过处理的数据（公开来源）`.
 - `data/verified/`: limited official national values used for independent checks.
 
+### Detailed public-data tables
+
+- `moa_2024_detailed_fishery_statistics.csv`: one observation per
+  indicator/category. `yoy_pct` is signed (declines are negative) and
+  `share_pct` is populated only where the official table reports a share.
+- `moa_fishery_environment_2024.csv`: `comparison_year` and
+  `change_direction` distinguish current levels from reported changes. Percentage
+  rows are decline magnitudes, not absolute pollutant concentrations.
+- `official_latest_aquatic_products_2025.csv`: `category_basis` prevents the
+  national production-method split (aquaculture/capture) from being confused with
+  Zhejiang's water-body split (marine/freshwater).

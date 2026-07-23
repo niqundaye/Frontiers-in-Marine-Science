@@ -21,7 +21,7 @@ This is **not an author-run exact replication**. As of 2026-07-23, the article p
 | Level | Contents | Status |
 |---|---|---|
 | Exact transcription | Tables 1-4 and explicitly printed numeric anchors | Reproduced from the CC BY article |
-| Processed data (public sources) | World Bank/FAO 2014-2023 series and accessible Ministry communiqués | Download script, source URL, retrieval date and license/terms notes included |
+| Processed data (public sources) | World Bank/FAO 2014-2023; Ministry 2024 detailed and environmental data; NBS national and Zhejiang 2025 aquatic production | Deterministic parser, reported and normalized units, source URL, retrieval date, HTML SHA-256 and terms notes included |
 | Processed data (manuscript figures) | All 20 DOCX-embedded panels behind Figures 1-10 | Direct OOXML extraction, panel mapping, dimensions and SHA-256 included |
 | Processed data (structured replots) | Figure 2-10 CSVs and code-generated comparison plots | Deterministic values anchored to disclosed curves and numeric values |
 | Public-data surrogate | 248-variable PPMS optimization | Executable structural implementation; proxy regional coefficients |

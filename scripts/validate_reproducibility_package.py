@@ -78,6 +78,35 @@ def main() -> None:
             checks,
         )
 
+    public = ROOT / "data" / "public"
+    detailed = pd.read_csv(public / "moa_2024_detailed_fishery_statistics.csv")
+    environment = pd.read_csv(public / "moa_fishery_environment_2024.csv")
+    latest = pd.read_csv(public / "official_latest_aquatic_products_2025.csv")
+    require(len(detailed) == 99, "MOA 2024 detailed extract has 99 records", checks)
+    require(len(environment) == 12, "Fishery-environment extract has 12 records", checks)
+    require(len(latest) == 6, "Latest national/Zhejiang extract has 6 records", checks)
+    for name, frame in [
+        ("MOA 2024 detailed", detailed),
+        ("Fishery environment", environment),
+        ("Latest national/Zhejiang", latest),
+    ]:
+        require(
+            frame["data_label"].eq("经过处理的数据（公开来源）").all(),
+            f"{name} records disclose processed public-source status",
+            checks,
+        )
+        require(
+            frame["source_sha256"].str.fullmatch(r"[0-9a-f]{64}").all(),
+            f"{name} records retain official HTML SHA-256",
+            checks,
+        )
+        normalized = frame["reported_value"] * frame["normalization_multiplier"]
+        require(
+            (frame["value"] - normalized).abs().le(1e-6).all(),
+            f"{name} normalized values reconcile to reported values",
+            checks,
+        )
+
     target = ROOT / "results" / "PACKAGE_VALIDATION.csv"
     pd.DataFrame(checks).to_csv(target, index=False)
     print(f"{len(checks)} reproducibility checks passed")

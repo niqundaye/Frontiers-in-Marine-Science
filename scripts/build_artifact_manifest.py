@@ -41,7 +41,7 @@ def provenance_class(path: Path) -> str:
         return "processed_data"
     if relative.startswith("implementations/"):
         return "per_result_artifact"
-    if path.suffix.lower() in {".py", ".yml", ".yaml", ".toml"}:
+    if path.suffix.lower() in {".py", ".mjs", ".js", ".yml", ".yaml", ".toml"}:
         return "code_or_configuration"
     return "documentation_or_license"
 
@@ -55,6 +55,7 @@ def main() -> None:
             if path.is_file()
             and "__pycache__" not in path.parts
             and path.suffix.lower() not in {".pyc", ".pyo"}
+            and not path.name.endswith(".inspect.ndjson")
         )
     unique = sorted({path.resolve() for path in paths if path.exists() and path.resolve() != TARGET.resolve()})
     rows = []
