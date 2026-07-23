@@ -7,7 +7,10 @@ def test_each_figure_has_code_input_when_needed_and_results():
         assert (folder / "README.md").is_file()
         assert (folder / "run.py").is_file()
         assert len(list(folder.glob("*.png"))) == 1
-        assert len(list(folder.glob("*.svg"))) == 1
+        assert len(list(folder.glob("*.svg"))) == 0
+        generated = folder / "generated_from_processed_data"
+        assert len(list(generated.glob("*.png"))) == 1
+        assert len(list(generated.glob("*.svg"))) == 1
         if number > 1:
             assert (folder / "input_data.csv").is_file()
 

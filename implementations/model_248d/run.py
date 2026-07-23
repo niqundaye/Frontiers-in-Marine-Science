@@ -9,4 +9,4 @@ from fishery_repro.benchmark import run_smoke_benchmark
 HERE = Path(__file__).resolve().parent
 
 if __name__ == "__main__":
-    print(run_smoke_benchmark(HERE / "smoke_summary.csv", population=24, generations=12, seed=1809036))
+    print(run_smoke_benchmark(HERE / "smoke_summary.csv", population=48, generations=20, seed=1809036))

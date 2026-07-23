@@ -8,6 +8,15 @@
 
 The article is CC BY. Tables 1-4 in `data/paper/` were transcribed from the PDF and checked against the HTML rendering.
 
+## Manuscript figure source
+
+- User-supplied source: `316Manuscript.DOCX`
+- SHA-256: `2ee3d23f1a5592b59e6c3e190bc361e1fdb4024405d7a8c5e2681fc3575bb2e0`
+- Mapping: 20 embedded PNG panels mapped to Figures 1-10 in `data/processed/manuscript_figures/manifest.csv`
+- Label: `经过处理的数据`
+
+The primary PNGs in `results/figures/` use these DOCX panels. Multi-panel figures receive only white-background layout and `(a)/(b)/(c)` labels. Code-generated comparison plots are kept separately in `results/processed_data_replots/`.
+
 ## Official checks
 
 - 2023 national fishery economic statistics communiqué: https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm

@@ -36,14 +36,14 @@ notes.getRange("A1:B9").values = [
   ["Province-level data", "NBS indicator A0407 documented, but the automated endpoint returned HTTP 403"],
   ["Important", "World Bank/FAO and Ministry totals have different definitions; do not merge them as one series"],
   ["Missing values", "not_found means the field was not located in that official HTML page; no interpolation"],
-  ["Article reconstruction", "Figures 2-10 remain calibrated reconstructions, not author run logs"],
+  ["数据标识 / Data label", "经过处理的数据 (processed data); figure CSVs are derived from disclosed anchors, not author run logs"],
   ["Repository", "https://github.com/niqundaye/Frontiers-in-Marine-Science"],
 ];
 
 const sheetConfigs = [
   ["World Bank FAO", "A1:M31", [12, 14, 10, 18, 34, 16, 16, 34, 58, 18, 14, 14, 44], 40, false],
   ["MOA Annual", "A1:I71", [10, 30, 16, 18, 38, 58, 14, 16, 42], 40, false],
-  ["Source Catalog", "A1:I13", [25, 30, 36, 28, 62, 38, 34, 48, 15], 46, true],
+  ["Source Catalog", "A1:J13", [25, 30, 36, 28, 62, 38, 34, 48, 15, 70], 46, true],
   ["Notes", "A1:B9", [24, 90], 34, true],
 ];
 

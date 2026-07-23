@@ -4,8 +4,8 @@ This directory contains openly retrievable data added after the article reconstr
 
 | File | Contents | Evidence level |
 |---|---|---|
-| `world_bank_fao_china_fisheries_2014_2023.csv` | China total, aquaculture and capture production from FAO via the World Bank API | Open external data, CC BY 4.0 |
-| `moa_national_fishery_statistics.csv` | Key values parsed from accessible Ministry annual communiqués | Official national statistics |
+| `world_bank_fao_china_fisheries_2014_2023.csv` | China total, aquaculture and capture production from FAO via the World Bank API | 经过处理的数据（公开来源），CC BY 4.0 |
+| `moa_national_fishery_statistics.csv` | Key values parsed from accessible Ministry annual communiqués | 经过处理的数据（官方公报） |
 | `source_catalog.csv` | URLs, access status, licensing/terms notes and repository mapping | Provenance catalog |
 | `public_data_catalog.xlsx` | Review-friendly workbook containing all three CSV tables and notes | Derived packaging only |
 

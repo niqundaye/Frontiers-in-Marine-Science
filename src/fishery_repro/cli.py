@@ -9,6 +9,7 @@ from .config import ROOT, load_config
 from .dataset import write_audit
 from .figures import make_all_figures
 from .manifest import write_manifest
+from .manuscript_figures import compose_manuscript_figures
 from .public_data import download_public_data
 
 
@@ -36,13 +37,14 @@ def main() -> None:
         write_calibrated_data(output_root / "data", seed=seed, step=int(reconstruction["generations_step"]))
     if args.command in {"figures", "all"}:
         make_all_figures(
-            output_dir=output_root / "figures",
+            output_dir=output_root / "processed_data_replots",
             data_dir=output_root / "data",
             formats=tuple(reconstruction["export_formats"]),
             dpi=int(reconstruction["dpi"]),
             seed=seed,
             step=int(reconstruction["generations_step"]),
         )
+        compose_manuscript_figures(output_dir=output_root / "figures")
     if args.command in {"audit", "all"}:
         write_audit(output_root / "tables" / "data_audit.csv")
     if args.command in {"benchmark", "all"}:

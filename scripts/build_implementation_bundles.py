@@ -8,16 +8,16 @@ ROOT = Path(__file__).resolve().parents[1]
 IMPLEMENTATIONS = ROOT / "implementations"
 
 FIGURES = {
-    1: ("Figure_01_PPMS_MOO_architecture", None, "概念架构图；依据论文图 1 重绘"),
-    2: ("Figure_02_convergence", "figure_02_convergence.csv", "校准重建：HV/IGD 收敛曲线"),
-    3: ("Figure_03_statistical_comparison", "figure_03_boxplots.csv", "校准重建：30 次运行箱线图"),
-    4: ("Figure_04_kpi_radar", "figure_04_kpis.csv", "校准重建：三目标 KPI 雷达图"),
-    5: ("Figure_05_pareto_sets", "figure_05_pareto.csv", "校准重建：三维 Pareto 集"),
-    6: ("Figure_06_parameter_sensitivity", "figure_06_parameter_sensitivity.csv", "校准重建：参数敏感性"),
-    7: ("Figure_07_digitalization_sensitivity", "figure_07_digitalization_sensitivity.csv", "校准重建：数字化系数敏感性"),
-    8: ("Figure_08_tac_sensitivity", "figure_08_tac_sensitivity.csv", "校准重建：TAC 政策敏感性"),
-    9: ("Figure_09_algorithm_ablation", "figure_09_algorithm_ablation.csv", "校准重建：算法组件消融"),
-    10: ("Figure_10_module_ablation", "figure_10_module_ablation.csv", "校准重建：PPM 模块消融"),
+    1: ("Figure_01_PPMS_MOO_architecture", None, "PPMS-MOO 架构图"),
+    2: ("Figure_02_convergence", "figure_02_convergence.csv", "HV/IGD 收敛曲线"),
+    3: ("Figure_03_statistical_comparison", "figure_03_boxplots.csv", "30 次运行箱线图"),
+    4: ("Figure_04_kpi_radar", "figure_04_kpis.csv", "三目标 KPI 雷达图"),
+    5: ("Figure_05_pareto_sets", "figure_05_pareto.csv", "三维 Pareto 集"),
+    6: ("Figure_06_parameter_sensitivity", "figure_06_parameter_sensitivity.csv", "参数敏感性"),
+    7: ("Figure_07_digitalization_sensitivity", "figure_07_digitalization_sensitivity.csv", "数字化系数敏感性"),
+    8: ("Figure_08_tac_sensitivity", "figure_08_tac_sensitivity.csv", "TAC 政策敏感性"),
+    9: ("Figure_09_algorithm_ablation", "figure_09_algorithm_ablation.csv", "算法组件消融"),
+    10: ("Figure_10_module_ablation", "figure_10_module_ablation.csv", "PPM 模块消融"),
 }
 
 TABLES = {
@@ -44,7 +44,9 @@ HERE = Path(__file__).resolve().parent
 
 if __name__ == "__main__":
     _style()
-    paths = {function}({call_arg}HERE, ("png", "svg"), 220)
+    output = HERE / "generated_from_processed_data"
+    output.mkdir(parents=True, exist_ok=True)
+    paths = {function}({call_arg}output, ("png", "svg"), 220)
     for path in paths:
         print(path.resolve())
 '''
@@ -55,19 +57,28 @@ def build_figures() -> None:
         bundle = IMPLEMENTATIONS / f"figure_{number:02d}"
         bundle.mkdir(parents=True, exist_ok=True)
         (bundle / "run.py").write_text(_figure_runner(number, input_name), encoding="utf-8")
+        for stale_svg in bundle.glob("Figure_*.svg"):
+            stale_svg.unlink()
         if input_name:
             shutil.copy2(ROOT / "results" / "data" / input_name, bundle / "input_data.csv")
+        shutil.copy2(ROOT / "results" / "figures" / f"{stem}.png", bundle / f"{stem}.png")
+        generated = bundle / "generated_from_processed_data"
+        generated.mkdir(parents=True, exist_ok=True)
         for extension in ("png", "svg"):
-            shutil.copy2(ROOT / "results" / "figures" / f"{stem}.{extension}", bundle / f"{stem}.{extension}")
-        input_line = "- `input_data.csv`：本图实际读取的数据。\n" if input_name else "- 本图不需要数值输入表。\n"
+            shutil.copy2(
+                ROOT / "results" / "processed_data_replots" / f"{stem}.{extension}",
+                generated / f"{stem}.{extension}",
+            )
+        input_line = "- `input_data.csv`：代码重绘使用的经过处理的数据。\n" if input_name else "- 本图不需要数值输入表。\n"
         readme = f"""# 图 {number} 独立实现包
 
-证据等级：**{evidence}**。
+数据标识：**经过处理的数据**。内容：{evidence}。
 
 ## 文件
 
 - `run.py`：本图独立运行入口；
-{input_line}- `{stem}.png` / `.svg`：当前生成结果；
+{input_line}- `{stem}.png`：从用户提供的 `316Manuscript.DOCX` 提取并按子图编号排版的主要结果；
+- `generated_from_processed_data/`：运行代码后根据结构化数据生成的 PNG/SVG 对照图；
 - 共享核心实现：[`src/fishery_repro/figures.py`](../../src/fishery_repro/figures.py)。
 
 ## 运行
@@ -78,7 +89,7 @@ def build_figures() -> None:
 python implementations/figure_{number:02d}/run.py
 ```
 
-图 2-10 的输入数据是论文锚点约束下的确定性校准重建，不是作者原始 30 次运行日志。
+图 2-10 的 CSV 统一标识为“经过处理的数据”：它们依据论文披露的曲线和数值锚点整理，不是作者原始 30 次运行日志。
 """
         (bundle / "README.md").write_text(readme, encoding="utf-8")
 
@@ -87,7 +98,8 @@ def build_tables() -> None:
     for number, (filename, expected_rows) in TABLES.items():
         bundle = IMPLEMENTATIONS / f"table_{number:02d}"
         bundle.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(ROOT / "data" / "paper" / filename, bundle / "data.csv")
+        source_text = (ROOT / "data" / "paper" / filename).read_text(encoding="utf-8")
+        (bundle / "data.csv").write_text(source_text.rstrip("\r\n") + "\n", encoding="utf-8")
         validator = f'''from pathlib import Path
 import pandas as pd
 
@@ -132,7 +144,7 @@ from fishery_repro.benchmark import run_smoke_benchmark
 HERE = Path(__file__).resolve().parent
 
 if __name__ == "__main__":
-    print(run_smoke_benchmark(HERE / "smoke_summary.csv", population=24, generations=12, seed=1809036))
+    print(run_smoke_benchmark(HERE / "smoke_summary.csv", population=48, generations=20, seed=1809036))
 ''',
         encoding="utf-8",
     )
@@ -160,7 +172,7 @@ def build_index() -> None:
     links += ["- [248 维模型与算法基准](model_248d/README.md)"]
     text = """# 分结果自包含实现包
 
-本目录把每个论文结果所需的**代码、输入数据、图形/表格输出和说明**放在同一目录中，便于逐项查看和运行。共享数学实现仍保留在 `src/fishery_repro/`，各目录的 `run.py` 或 `validate.py` 是明确的独立入口。
+本目录把每个论文结果所需的**代码、经过处理的数据、DOCX 原图结果、代码重绘结果和说明**放在同一目录中，便于逐项查看和运行。共享数学实现仍保留在 `src/fishery_repro/`，各目录的 `run.py` 或 `validate.py` 是明确的独立入口。
 
 """ + "\n".join(links) + "\n"
     (IMPLEMENTATIONS / "README.md").write_text(text, encoding="utf-8")

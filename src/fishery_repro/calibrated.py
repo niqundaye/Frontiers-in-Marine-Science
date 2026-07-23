@@ -33,7 +33,7 @@ def _long_frame(x: np.ndarray, values: dict[str, np.ndarray], x_name: str) -> pd
 def generate_calibrated_data(seed: int = 1809036, step: int = 10) -> dict[str, pd.DataFrame]:
     """Create traceable plot data anchored to values reported in the article.
 
-    These are calibrated reconstructions, not recovered author run logs. Every file
+    These are processed data derived from disclosed anchors, not recovered author run logs. Every file
     written by this function carries that status in the repository documentation.
     """
     rng = np.random.default_rng(seed)

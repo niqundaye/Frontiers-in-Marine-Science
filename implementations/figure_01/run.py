@@ -10,6 +10,8 @@ HERE = Path(__file__).resolve().parent
 
 if __name__ == "__main__":
     _style()
-    paths = figure_01(HERE, ("png", "svg"), 220)
+    output = HERE / "generated_from_processed_data"
+    output.mkdir(parents=True, exist_ok=True)
+    paths = figure_01(output, ("png", "svg"), 220)
     for path in paths:
         print(path.resolve())

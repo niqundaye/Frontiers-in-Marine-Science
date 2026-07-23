@@ -11,6 +11,8 @@ HERE = Path(__file__).resolve().parent
 
 if __name__ == "__main__":
     _style()
-    paths = figure_02(pd.read_csv(HERE / 'input_data.csv'), HERE, ("png", "svg"), 220)
+    output = HERE / "generated_from_processed_data"
+    output.mkdir(parents=True, exist_ok=True)
+    paths = figure_02(pd.read_csv(HERE / 'input_data.csv'), output, ("png", "svg"), 220)
     for path in paths:
         print(path.resolve())

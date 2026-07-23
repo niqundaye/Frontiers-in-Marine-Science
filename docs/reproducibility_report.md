@@ -4,16 +4,16 @@
 
 | Article item | Repository source | Evidence level |
 |---|---|---|
-| Figure 1, PPMS-MOO architecture | `figures.figure_01` | Conceptual recreation |
-| Figure 2, HV/IGD convergence | `results/data/figure_02_convergence.csv` | Calibrated reconstruction |
-| Figure 3, 30-run boxplots | `results/data/figure_03_boxplots.csv` | Reported-anchor reconstruction |
-| Figure 4, KPI radar | `results/data/figure_04_kpis.csv` | Reported-trend reconstruction |
-| Figure 5, 3D Pareto sets | `results/data/figure_05_pareto.csv` | Calibrated reconstruction |
-| Figure 6, parameter sensitivity | `results/data/figure_06_parameter_sensitivity.csv` | Digitized-anchor reconstruction |
-| Figure 7, digitalization sensitivity | `results/data/figure_07_digitalization_sensitivity.csv` | Reported-trend reconstruction |
-| Figure 8, TAC sensitivity | `results/data/figure_08_tac_sensitivity.csv` | Reported-anchor reconstruction |
-| Figure 9, algorithm ablation | `results/data/figure_09_algorithm_ablation.csv` | Reported-trend reconstruction |
-| Figure 10, module ablation | `results/data/figure_10_module_ablation.csv` | Printed-value reconstruction |
+| Figure 1, PPMS-MOO architecture | `data/processed/manuscript_figures/panels/Figure_01.png` | Processed data: direct DOCX extraction |
+| Figure 2, HV/IGD convergence | `data/processed/manuscript_figures/panels/Figure_02*.png`; `results/data/figure_02_convergence.csv` | Processed data: DOCX panels + structured code input |
+| Figure 3, 30-run boxplots | `data/processed/manuscript_figures/panels/Figure_03*.png`; `results/data/figure_03_boxplots.csv` | Processed data: DOCX panels + structured code input |
+| Figure 4, KPI radar | `data/processed/manuscript_figures/panels/Figure_04.png`; `results/data/figure_04_kpis.csv` | Processed data: DOCX panel + structured code input |
+| Figure 5, 3D Pareto sets | `data/processed/manuscript_figures/panels/Figure_05.png`; `results/data/figure_05_pareto.csv` | Processed data: DOCX panel + structured code input |
+| Figure 6, parameter sensitivity | `data/processed/manuscript_figures/panels/Figure_06*.png`; `results/data/figure_06_parameter_sensitivity.csv` | Processed data: DOCX panels + structured code input |
+| Figure 7, digitalization sensitivity | `data/processed/manuscript_figures/panels/Figure_07*.png`; `results/data/figure_07_digitalization_sensitivity.csv` | Processed data: DOCX panels + structured code input |
+| Figure 8, TAC sensitivity | `data/processed/manuscript_figures/panels/Figure_08*.png`; `results/data/figure_08_tac_sensitivity.csv` | Processed data: DOCX panels + structured code input |
+| Figure 9, algorithm ablation | `data/processed/manuscript_figures/panels/Figure_09*.png`; `results/data/figure_09_algorithm_ablation.csv` | Processed data: DOCX panels + structured code input |
+| Figure 10, module ablation | `data/processed/manuscript_figures/panels/Figure_10*.png`; `results/data/figure_10_module_ablation.csv` | Processed data: DOCX panels + structured code input |
 | Tables 1-4 | `data/paper/` | Exact transcription |
 | Equations 1-7 / 248-variable structure | `model.FisheryPPMSProblem` | Structural surrogate |
 
@@ -34,4 +34,3 @@
 - sector/mode income, price, cost, ecological-footprint, and processing-conversion coefficients;
 - exact crossover/mutation feedback rules and reference relocation association code;
 - per-generation objective populations from all 30 runs.
-

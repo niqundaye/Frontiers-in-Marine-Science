@@ -1,12 +1,13 @@
 # 图 2 独立实现包
 
-证据等级：**校准重建：HV/IGD 收敛曲线**。
+数据标识：**经过处理的数据**。内容：HV/IGD 收敛曲线。
 
 ## 文件
 
 - `run.py`：本图独立运行入口；
-- `input_data.csv`：本图实际读取的数据。
-- `Figure_02_convergence.png` / `.svg`：当前生成结果；
+- `input_data.csv`：代码重绘使用的经过处理的数据。
+- `Figure_02_convergence.png`：从用户提供的 `316Manuscript.DOCX` 提取并按子图编号排版的主要结果；
+- `generated_from_processed_data/`：运行代码后根据结构化数据生成的 PNG/SVG 对照图；
 - 共享核心实现：[`src/fishery_repro/figures.py`](../../src/fishery_repro/figures.py)。
 
 ## 运行
@@ -17,4 +18,4 @@
 python implementations/figure_02/run.py
 ```
 
-图 2-10 的输入数据是论文锚点约束下的确定性校准重建，不是作者原始 30 次运行日志。
+图 2-10 的 CSV 统一标识为“经过处理的数据”：它们依据论文披露的曲线和数值锚点整理，不是作者原始 30 次运行日志。

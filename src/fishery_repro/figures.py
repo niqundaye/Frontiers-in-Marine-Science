@@ -102,7 +102,7 @@ def figure_02(data: pd.DataFrame, output_dir: Path, formats: tuple[str, ...], dp
         ax.text(-0.11, -0.18, "a" if metric == "HV" else "b", transform=ax.transAxes, fontsize=11)
     axes[0].set_ylim(0, 1.0)
     axes[1].set_ylim(0, 0.75)
-    fig.suptitle("Comparative convergence tracking (calibrated reconstruction)", y=1.02, weight="bold")
+    fig.suptitle("Comparative convergence tracking (processed-data replot)", y=1.02, weight="bold")
     fig.tight_layout()
     return _save(fig, "Figure_02_convergence", output_dir, formats, dpi)
 
@@ -254,7 +254,7 @@ def make_all_figures(
     step: int = 10,
 ) -> list[Path]:
     _style()
-    figures_dir = Path(output_dir) if output_dir else ROOT / "results" / "figures"
+    figures_dir = Path(output_dir) if output_dir else ROOT / "results" / "processed_data_replots"
     plot_data_dir = Path(data_dir) if data_dir else ROOT / "results" / "data"
     data_paths = write_calibrated_data(plot_data_dir, seed=seed, step=step)
     generated: list[Path] = []
