@@ -1,0 +1,11 @@
+indicator,value,unit,official_source_url,paper_comparison
+total_economic_output,32669.96,100 million RMB,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 326699 and labels the unit as 10^4 RMB; a 0.1 conversion to 100 million RMB matches the official total to rounding."
+fisher_per_capita_net_income,25777.21,RMB/year,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 25777; matches after rounding."
+total_aquatic_products,71161700,tonnes,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 71161716; matches the rounded official communiqué."
+marine_aquaculture,23956000,tonnes,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 23955970; matches the rounded official communiqué."
+domestic_marine_capture,9574900,tonnes,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 9574869; matches the rounded official communiqué."
+distant_water_capture,2322300,tonnes,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 2322333; matches the rounded official communiqué."
+processing_enterprises,9433,count,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Exact match."
+cold_storage_units,9143,count,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Exact match."
+fleet_power,18940200,kW,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 18940154; matches the rounded official communiqué."
+aquatic_exports_value,20463,million USD,https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm,"Paper gives 20462; one-million-USD rounding difference."

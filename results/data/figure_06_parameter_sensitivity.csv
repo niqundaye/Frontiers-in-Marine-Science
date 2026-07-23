@@ -1,0 +1,15 @@
+parameter,setting,hv,sd
+adaptive_factor,0.0,0.86,0.014
+adaptive_factor,0.05,0.915,0.01
+adaptive_factor,0.1,0.958,0.004
+adaptive_factor,0.15,0.945,0.006
+adaptive_factor,0.2,0.92,0.009
+adaptive_factor,0.3,0.89,0.014
+adaptive_factor,0.4,0.85,0.02
+relocation_frequency,0.0,0.88,0.016
+relocation_frequency,20.0,0.935,0.01
+relocation_frequency,50.0,0.958,0.004
+relocation_frequency,75.0,0.945,0.007
+relocation_frequency,100.0,0.925,0.01
+relocation_frequency,150.0,0.89,0.015
+relocation_frequency,200.0,0.87,0.021

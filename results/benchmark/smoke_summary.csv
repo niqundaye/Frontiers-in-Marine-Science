@@ -1,0 +1,4 @@
+algorithm,population,generations,feasible_fraction,hypervolume_surrogate,max_social,max_economic,max_ecological,status
+IA-NSGA-III,48,20,1.0,0.37436728310590206,0.680539614984835,0.7324145874851763,0.7555779753781118,public-data surrogate; not author-run replication
+NSGA-III,48,20,1.0,0.2595870164375272,0.5783034319877627,0.6334647188498909,0.7118481350655099,public-data surrogate; not author-run replication
+NSGA-II,48,20,1.0,0.26506849436208535,0.5934661061855047,0.6350193316793339,0.7077177674018675,public-data surrogate; not author-run replication

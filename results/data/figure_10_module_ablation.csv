@@ -1,0 +1,13 @@
+scenario,indicator,value,sd
+Proposed,Social reliability,0.942,0.006
+No-Marketing,Social reliability,0.885,0.012
+No-Processing,Social reliability,0.724,0.025
+Traditional,Social reliability,0.625,0.038
+Proposed,Economic efficiency,0.938,0.009
+No-Marketing,Economic efficiency,0.825,0.018
+No-Processing,Economic efficiency,0.684,0.035
+Traditional,Economic efficiency,0.582,0.05
+Proposed,Ecological security,0.999,0.002
+No-Marketing,Ecological security,0.942,0.017
+No-Processing,Ecological security,0.895,0.027
+Traditional,Ecological security,0.824,0.039

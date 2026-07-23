@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this reconstruction, cite both the original article and this repository."
+title: "IA-NSGA-III fishery allocation reproduction"
+type: software
+version: 0.1.0
+date-released: 2026-07-23
+authors:
+  - name: "Reproducibility package contributors"
+preferred-citation:
+  type: article
+  title: "Optimizing sustainable fishery resource allocation in China: an improved adaptive NSGA-III approach under multi-dimensional rigid constraints"
+  authors:
+    - family-names: Liu
+      given-names: Nianfei
+    - family-names: Mao
+      given-names: Ning
+    - family-names: Huang
+      given-names: Jinmin
+  journal: "Frontiers in Marine Science"
+  volume: 13
+  year: 2026
+  doi: "10.3389/fmars.2026.1809036"
+

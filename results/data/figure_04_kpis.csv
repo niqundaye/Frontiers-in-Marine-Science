@@ -1,0 +1,13 @@
+algorithm,indicator,value
+IA-NSGA-III,Social reliability,0.95
+IA-NSGA-III,Economic efficiency,0.88
+IA-NSGA-III,Ecological security,0.999
+NSGA-III,Social reliability,0.84
+NSGA-III,Economic efficiency,0.79
+NSGA-III,Ecological security,0.935
+MOEA/D,Social reliability,0.78
+MOEA/D,Economic efficiency,0.74
+MOEA/D,Ecological security,0.895
+NSGA-II,Social reliability,0.71
+NSGA-II,Economic efficiency,0.66
+NSGA-II,Ecological security,0.825

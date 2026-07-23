@@ -1,0 +1,23 @@
+seed: 1809036
+paper:
+  doi: "10.3389/fmars.2026.1809036"
+  population_size: 200
+  generations: 1000
+  independent_runs: 30
+  objectives: 3
+  variables: 248
+  adaptive_factor: 0.1
+  relocation_frequency: 50
+  crossover_probability: 1.0
+  crossover_eta: 20
+  mutation_probability: 0.004032258064516129
+  mutation_eta: 20
+reconstruction:
+  mode: calibrated
+  generations_step: 10
+  export_formats: [png, svg]
+  dpi: 220
+benchmark:
+  smoke_population: 48
+  smoke_generations: 20
+
