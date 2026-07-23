@@ -1,0 +1,51 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "IA-NSGA-III fishery allocation reproducibility artifact",
+  "description": "Transparent reconstruction and executable public-data surrogate for Frontiers in Marine Science 13:1809036.",
+  "version": "0.3.0",
+  "datePublished": "2026-07-23",
+  "codeRepository": "https://github.com/niqundaye/Frontiers-in-Marine-Science",
+  "issueTracker": "https://github.com/niqundaye/Frontiers-in-Marine-Science/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.12",
+  "operatingSystem": [
+    "Linux",
+    "macOS",
+    "Windows"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Nianfei",
+      "familyName": "Liu"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Ning",
+      "familyName": "Mao"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Jinmin",
+      "familyName": "Huang"
+    }
+  ],
+  "citation": "https://doi.org/10.3389/fmars.2026.1809036",
+  "keywords": [
+    "IA-NSGA-III",
+    "fishery",
+    "multi-objective optimization",
+    "reproducibility"
+  ],
+  "softwareRequirements": [
+    "numpy==2.3.5",
+    "pandas==3.0.1",
+    "matplotlib==3.10.8",
+    "Pillow==12.2.0",
+    "scipy==1.17.1",
+    "PyYAML==6.0.3",
+    "pymoo==0.6.1.6"
+  ]
+}

@@ -1,8 +1,15 @@
 # Reproducibility checklist
 
+The primary reviewer entry point is `ARTIFACT_EVALUATION.md`. The checklist below
+maps repository evidence to the documentation, completeness and exercisability
+criteria used by computational-artifact reviewers.
+
 | Item | Repository evidence |
 |---|---|
+| Artifact identification and scope | `README.md`, `ARTIFACT_EVALUATION.md` |
+| Data and code availability statement | `DATA_AVAILABILITY.md` |
 | Fixed software environment | pinned `requirements.txt`, `requirements-dev.txt`, `environment.yml` |
+| Containerized environment | `Dockerfile`, `.dockerignore` |
 | Complete experimental parameters | `configs/experiments/*.yaml` |
 | Random seeds | explicit `seeds` list and per-run seed in every output row |
 | Independent repeats | `run_id` and `seed` in `run_summary.csv` |
@@ -20,5 +27,17 @@
 | Manuscript image provenance | `data/processed/manuscript_figures/manifest.csv` |
 | Automated tests | `tests/` and `.github/workflows/reproduce.yml` |
 | Whole-package validation | `scripts/validate_reproducibility_package.py` |
+| Non-destructive reviewer execution | `scripts/reviewer_quick_check.py` |
 | Whole-artifact checksums | `ARTIFACT_MANIFEST.csv` |
+| Machine-readable citation metadata | `CITATION.cff`, `codemeta.json`, `.zenodo.json` |
+| Cross-platform line-ending policy | `.gitattributes` |
 | Known missing author material | README limitations and experiment metadata disclosure |
+
+## Acceptance criteria
+
+- `python scripts/reviewer_quick_check.py` finishes with `"status": "pass"`.
+- The package validator reports no failed checks.
+- The unit-test suite reports no failures.
+- The smoke experiment contains every declared algorithm–seed pair and generation.
+- Every detailed public-data row retains a source URL, retrieval date and source hash.
+- No unavailable author input is labelled as raw or original author data.

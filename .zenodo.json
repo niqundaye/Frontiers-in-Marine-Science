@@ -1,0 +1,33 @@
+{
+  "title": "IA-NSGA-III fishery allocation reproducibility artifact",
+  "upload_type": "software",
+  "description": "Reviewer-oriented code, processed data, public-source data, provenance records, tests, and executable surrogate experiments for Liu, Mao and Huang (2026), Frontiers in Marine Science 13:1809036. This artifact does not claim recovery of unpublished province-level coefficients or author-run logs.",
+  "creators": [
+    {
+      "name": "Liu, Nianfei"
+    },
+    {
+      "name": "Mao, Ning"
+    },
+    {
+      "name": "Huang, Jinmin"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "version": "0.3.0",
+  "keywords": [
+    "fishery resource allocation",
+    "IA-NSGA-III",
+    "multi-objective optimization",
+    "research reproducibility",
+    "processed public data"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.3389/fmars.2026.1809036",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    }
+  ]
+}

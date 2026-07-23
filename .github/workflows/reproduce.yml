@@ -15,6 +15,7 @@ jobs:
           cache: pip
       - run: python -m pip install -r requirements-dev.txt
       - run: python -m pip install -e .
+      - run: python scripts/reviewer_quick_check.py --skip-tests
       - run: pytest
       - run: python -m fishery_repro all
       - run: python -m fishery_repro experiment --experiment-config configs/experiments/ci_smoke.yaml
@@ -24,4 +25,14 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: reproduction-results
-          path: results/
+          path: |
+            results/
+            ARTIFACT_MANIFEST.csv
+            data/public/*.csv
+
+  container-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t fishery-artifact:0.3.0 .
+      - run: docker run --rm fishery-artifact:0.3.0

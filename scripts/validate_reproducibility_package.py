@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -18,6 +19,15 @@ def require(condition: bool, message: str, checks: list[dict[str, str]]) -> None
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Validate the checked-in research artifact and optionally refresh its report."
+    )
+    parser.add_argument(
+        "--check-only",
+        action="store_true",
+        help="Run every check without modifying results/PACKAGE_VALIDATION.csv.",
+    )
+    args = parser.parse_args()
     checks: list[dict[str, str]] = []
     for number in range(1, 11):
         bundle = ROOT / "implementations" / f"figure_{number:02d}"
@@ -107,10 +117,37 @@ def main() -> None:
             checks,
         )
 
-    target = ROOT / "results" / "PACKAGE_VALIDATION.csv"
-    pd.DataFrame(checks).to_csv(target, index=False)
+    for filename in [
+        "ARTIFACT_EVALUATION.md",
+        "DATA_AVAILABILITY.md",
+        "CITATION.cff",
+        "codemeta.json",
+        ".zenodo.json",
+        "Dockerfile",
+        "scripts/reviewer_quick_check.py",
+    ]:
+        require((ROOT / filename).is_file(), f"Reviewer artifact includes {filename}", checks)
+
+    evaluation = (ROOT / "ARTIFACT_EVALUATION.md").read_text(encoding="utf-8")
+    availability = (ROOT / "DATA_AVAILABILITY.md").read_text(encoding="utf-8")
+    require(
+        all(term in evaluation for term in ("Documentation", "Completeness", "Exercisability")),
+        "Artifact guide covers reviewer evaluation criteria",
+        checks,
+    )
+    require(
+        "not an author-run exact numerical replication" in availability,
+        "Availability statement discloses non-exact reconstruction status",
+        checks,
+    )
+
     print(f"{len(checks)} reproducibility checks passed")
-    print(target.resolve())
+    if args.check_only:
+        print("Check-only mode: no repository files were modified")
+    else:
+        target = ROOT / "results" / "PACKAGE_VALIDATION.csv"
+        pd.DataFrame(checks).to_csv(target, index=False, lineterminator="\n")
+        print(target.resolve())
 
 
 if __name__ == "__main__":

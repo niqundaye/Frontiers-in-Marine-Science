@@ -1,73 +1,119 @@
-# 中国渔业 IA-NSGA-III 论文复现包
+# IA-NSGA-III 中国渔业资源配置——可复现研究包
 
-本仓库复现论文：
+[![Reproduce](https://github.com/niqundaye/Frontiers-in-Marine-Science/actions/workflows/reproduce.yml/badge.svg)](https://github.com/niqundaye/Frontiers-in-Marine-Science/actions/workflows/reproduce.yml)
+[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/Code%20license-MIT-green.svg)](LICENSE)
 
-> Liu, N., Mao, N., & Huang, J. (2026). *Optimizing sustainable fishery resource allocation in China: an improved adaptive NSGA-III approach under multi-dimensional rigid constraints*. Frontiers in Marine Science, 13, 1809036. https://doi.org/10.3389/fmars.2026.1809036
+[English](README.md) · [审稿人验证指南](ARTIFACT_EVALUATION.md) ·
+[数据与代码可用性](DATA_AVAILABILITY.md) ·
+[实验协议](docs/EXPERIMENT_PROTOCOL.md)
 
-已完成的内容包括：
+## 研究包信息
 
-- 从 `316Manuscript.DOCX` 提取并组合论文图 1-10，作为主要实验结果图；
-- 使用结构化 CSV 生成的 PNG/SVG 代码对照图；
-- 论文 4 个表的结构化 CSV；
-- 图 2-10 的全部绘图数据 CSV；
-- 世界银行/FAO 2014-2023 捕捞、养殖和渔业总产量开放数据；
-- 可访问农业农村部年度公报的机器可读提取及来源清单；
-- 每张图、每个表均有代码、输入数据和输出结果同目录的独立实现包；
-- 248 维生产—加工—营销（PPMS）约束优化模型；
-- Logistic 混沌初始化、约束违反反馈修复、自适应参考点迁移；
-- IA-NSGA-III、NSGA-III、NSGA-II 的多随机种子独立实验；
-- 逐代可行率、约束违反、HV、非支配解数量和参考方向迁移日志；
-- 每个最终解的 248 维决策向量、三个目标、七类约束残差和解码总量；
-- 每张图的输入模式、唯一键、派生统计和 SHA-256 校验报告；
-- 自动测试、GitHub Actions 和 SHA-256 结果清单。
+本仓库对应论文：
 
-## 重要边界
+> Liu, N., Mao, N., and Huang, J. (2026). “Optimizing sustainable fishery
+> resource allocation in China: an improved adaptive NSGA-III approach under
+> multi-dimensional rigid constraints.” *Frontiers in Marine Science*, 13,
+> 1809036. <https://doi.org/10.3389/fmars.2026.1809036>
 
-这不是“作者原始运行日志的严格数值复刻”。截至 2026-07-23，期刊页面没有提供可下载的补充数据或源码；论文也没有公开 31 省的完整输入矩阵、区域 TAC、数字化指数底层指标、收入/成本系数和 30 次独立运行日志。
+研究包版本为 **0.3.0**，包含代码、实验配置、经过处理的数据、官方公开数据、
+已生成结果、测试、运行环境、来源记录和机器可读校验，便于审稿人独立检查。
 
-因此，本仓库统一使用“经过处理的数据”标识，并按来源保留说明：
+> **复现边界：**本仓库属于透明重建和公开数据代理实验，不是作者原始运行日志的
+> 严格数值复制。论文没有公开 31 省完整系数矩阵、区域 TAC、数字化指数底层输入、
+> 收入/成本系数和原始 30 次运行日志。本仓库不会伪造这些材料。
 
-- **精确转录**：正文表 1-4 和明确披露的数值；
-- **经过处理的数据（公开来源）**：世界银行/FAO 2014-2023 数据、农业农村部 2024 年 99 项详细渔业统计和 12 项生态环境指标，以及国家统计局全国和浙江 2025 年水产品数据；均保留报告值/单位、标准化值、来源网址、检索日期和网页 SHA-256；
-- **经过处理的数据（论文原图）**：从 `316Manuscript.DOCX` 直接提取的 20 张原始子图，并仅进行多子图排版；
-- **经过处理的数据（代码重绘）**：图 2-10 中未公开的逐点值依据论文曲线与数值锚点整理，用于可运行代码对照；
-- **公开代理模型**：保留 248 维结构和约束逻辑，但未披露的省级系数采用可替换代理值。
+## 审稿人快速验证
 
-不要把 `results/data/` 中经过处理的数据称为作者原始 30 次运行日志。
-
-## 一键运行
+建议使用 Python 3.12。
 
 ```powershell
-.venv\Scripts\python -m pip install -e .
-.venv\Scripts\python scripts\reproduce_research_artifact.py
+py -3.12 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m pip install --no-deps -e .
+.venv\Scripts\python scripts\reviewer_quick_check.py
 ```
 
-完整研究包命令依次重建数据和图、运行 `5 个种子 × 3 种算法 × 30 代`
-公开代理实验、重建每个结果目录、执行 71 项包级审计和全部单元测试。论文披露的
-`200 个体 × 1000 代 × 30 次独立运行`协议完整写在
-`configs/experiments/paper_protocol.yaml`；该配置只有在补齐作者未公开省级输入后
-才能用于严格数值复现。
+该命令无需联网，也不会修改仓库中的结果文件。它将：
 
-## 详细实现和输出
+1. 按 `ARTIFACT_MANIFEST.csv` 核验全部交付文件的规范化 SHA-256（文本统一 LF，
+   二进制按原始字节）；
+2. 以只检查模式执行包级可复现性审计；
+3. 运行全部单元测试；
+4. 在临时目录执行 6 次小规模优化实验；
+5. 核验算法、运行次数、迭代记录、三个目标和七类约束；
+6. 输出以 `"status": "pass"` 结尾的 JSON 报告。
 
-- 算法与模型：`src/fishery_repro/model.py`、`benchmark.py`、`experiment.py`；
-- 逐代和逐次运行结果：`results/experiments/processed_demo/`；
-- 5×3 次运行摘要：`run_summary.csv` 和 `algorithm_summary.csv`；
-- 450 行逐代状态：`generation_log.csv`；
-- 720 个最终种群解：`final_population_objectives_constraints.csv`；
-- 完整 248 维变量：`final_population_decision_vectors.csv`；
-- 参考方向更新：`reference_relocation_log.csv`；
-- 配置与运行环境：`config_snapshot.yaml` 和 `run_metadata.json`；
-- 图 1–10 独立实现：`implementations/figure_01/` 至 `figure_10/`；
-- 表 1–4 独立实现：`implementations/table_01/` 至 `table_04/`；
-- 数据字典：`data/DATA_DICTIONARY.md`；
-- 实验协议与算法公式：`docs/EXPERIMENT_PROTOCOL.md`、`docs/ALGORITHM_IMPLEMENTATION.md`；
-- 复现检查清单：`docs/REPRODUCIBILITY_CHECKLIST.md`。
+## 可复现性声明
 
-如需从同一版本的 Word 稿重新导入论文原图：
+| 内容 | 仓库证据 | 状态 |
+|---|---|---|
+| 论文表 1–4 | `data/paper/`、`implementations/table_*` | 精确转录并自动校验 |
+| 论文图 1–10 | `data/processed/manuscript_figures/`、`results/figures/` | 从 DOCX 直接提取，保留映射和 SHA-256 |
+| 图 2–10 绘图数据 | `results/data/`、`implementations/figure_*` | 依据论文曲线和数值锚点整理的经过处理的数据 |
+| 248 维 PPMS 模型 | `src/fishery_repro/model.py` | 可执行的结构复现 |
+| 三种算法实验 | `src/fishery_repro/experiment.py` | 固定随机种子、显式算子、逐代日志和最终解 |
+| 全国公开数据核验 | `data/public/`、`src/fishery_repro/public_data.py` | 确定性解析，保留单位、网址、日期和网页哈希 |
+| 作者未公开输入及原始日志 | 论文未提供 | 明确标记为缺失，不作为作者数据进行插补 |
 
-```powershell
-.venv\Scripts\python scripts\import_manuscript_figures.py "路径\316Manuscript.DOCX"
+所有重建或新生成记录均标注为“经过处理的数据”或“公开数据代理实验”。
+不得将 `results/data/` 或 `results/experiments/processed_demo/` 描述为作者原始
+30 次运行日志。
+
+## 四种运行路径
+
+| 路径 | 命令 | 是否联网 | 用途 |
+|---|---|---:|---|
+| 审稿人快速检查 | `python scripts/reviewer_quick_check.py` | 否 | 完整性、测试和可执行性 |
+| 完整示范重建 | `python scripts/reproduce_research_artifact.py` | 否 | 重建图、代理实验和审计 |
+| 刷新官方公开数据 | `python -m fishery_repro public-data` | 是 | 重新抓取和解析官方数据 |
+| 容器运行 | 构建并运行 `Dockerfile` | 构建时需要 | 在统一环境执行快速检查 |
+
+论文尺度协议 `population=200`、`generations=1000`、每种算法 30 次独立运行，
+已经写入 `configs/experiments/paper_protocol.yaml`。该配置是论文协议声明，
+不代表已经恢复作者未公开的省级输入。
+
+## 已提供的审稿证据
+
+- 10 张论文原始组合图和 10 张代码重绘对照图；
+- 4 个论文表格的精确结构化转录；
+- 15 次示范实验、450 条逐代记录；
+- 720 个最终种群解、三个目标和七类约束；
+- 每个最终解的完整 248 维决策向量；
+- 农业农村部 2024 年 99 条详细渔业数据；
+- 2024 年 12 条渔业生态环境数据；
+- 2025 年全国与浙江 6 条最新水产品数据；
+- 包级验证报告和全仓库 SHA-256 清单。
+
+## 仓库结构
+
+```text
+ARTIFACT_EVALUATION.md   审稿流程、运行时间和通过标准
+DATA_AVAILABILITY.md     数据/代码可用性、限制与投稿声明
+configs/                 论文尺度、示范和 CI 实验配置
+data/paper/              论文表格精确转录
+data/processed/          DOCX 原图面板及来源记录
+data/public/             官方公开数据、来源目录和审阅工作簿
+data/verified/           独立官方数值核验
+docs/                    算法、实验协议、数据来源和限制
+implementations/         每张图/表对应的代码、输入、输出和校验
+results/                 图、数据、实验日志和验证报告
+scripts/                 审稿检查、完整运行、下载与审计工具
+src/fishery_repro/       模型、算法、数据与结果流水线
+tests/                   数据、模型、元数据、绘图和集成测试
 ```
 
-主要 DOCX 原图结果位于 `results/figures/`，代码对照图位于 `results/processed_data_replots/`，逐项实现包位于 `implementations/`，经过处理的数据位于 `data/processed/` 和 `data/public/`。若后续获得作者原始省级数据，只需替换 `FisheryPPMSProblem` 中的代理系数来源，即可把当前“结构复现”升级为“严格数值复现”。
+## 投稿前归档
+
+`DATA_AVAILABILITY.md` 已提供适合论文使用的数据与代码可用性说明。
+`CITATION.cff`、`codemeta.json` 和 `.zenodo.json` 已统一为版本 0.3.0。
+
+GitHub `main` 分支可以继续修改，因此投稿终稿中不能只依赖可变链接。投稿前应创建
+GitHub Release，并通过 Zenodo 或同类平台生成永久 DOI，再把 DOI 写入论文的
+Data Availability 和 Code Availability Statement。
+
+## 许可证
+
+仓库代码采用 MIT 许可证。论文来源图表应按照论文 CC BY 条款署名；公开数据继续
+适用各官方网站的使用条款；《中国渔业统计年鉴》未在仓库中重新分发。

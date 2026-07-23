@@ -1,9 +1,10 @@
 from __future__ import annotations
 
-import hashlib
 from pathlib import Path
 
 import pandas as pd
+
+from fishery_repro.integrity import content_for_hash, hash_mode, sha256_file
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,10 +21,17 @@ INCLUDED_ROOTS = (
     "tests",
 )
 INCLUDED_FILES = (
+    ".dockerignore",
+    ".gitattributes",
+    ".zenodo.json",
+    "ARTIFACT_EVALUATION.md",
     "CITATION.cff",
+    "DATA_AVAILABILITY.md",
+    "Dockerfile",
     "LICENSE",
     "README.md",
     "README_zh.md",
+    "codemeta.json",
     "environment.yml",
     "pyproject.toml",
     "requirements-dev.txt",
@@ -60,16 +68,17 @@ def main() -> None:
     unique = sorted({path.resolve() for path in paths if path.exists() and path.resolve() != TARGET.resolve()})
     rows = []
     for path in unique:
-        content = path.read_bytes()
+        mode = hash_mode(path)
         rows.append(
             {
                 "path": path.relative_to(ROOT).as_posix(),
-                "bytes": len(content),
-                "sha256": hashlib.sha256(content).hexdigest(),
+                "bytes": len(content_for_hash(path, mode)),
+                "sha256": sha256_file(path, mode),
+                "hash_mode": mode,
                 "provenance_class": provenance_class(path),
             }
         )
-    pd.DataFrame(rows).to_csv(TARGET, index=False)
+    pd.DataFrame(rows).to_csv(TARGET, index=False, lineterminator="\n")
     print(f"{len(rows)} files recorded")
     print(TARGET.resolve())
 
