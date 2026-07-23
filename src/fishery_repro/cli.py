@@ -9,11 +9,17 @@ from .config import ROOT, load_config
 from .dataset import write_audit
 from .figures import make_all_figures
 from .manifest import write_manifest
+from .public_data import download_public_data
 
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Reproduce the disclosed and reconstructable results of Frontiers 13:1809036")
-    parser.add_argument("command", choices=["data", "figures", "audit", "benchmark", "all"], nargs="?", default="all")
+    parser.add_argument(
+        "command",
+        choices=["data", "figures", "audit", "benchmark", "public-data", "all"],
+        nargs="?",
+        default="all",
+    )
     parser.add_argument("--config", default=str(ROOT / "configs" / "paper.yaml"))
     parser.add_argument("--output-root", default=str(ROOT / "results"))
     return parser
@@ -47,6 +53,8 @@ def main() -> None:
             generations=int(smoke["smoke_generations"]),
             seed=seed,
         )
+    if args.command == "public-data":
+        download_public_data(ROOT / "data" / "public")
     manifest = write_manifest(output_root, output_root / "MANIFEST.csv")
     print(f"Reproduction outputs written to: {output_root.resolve()}")
     print(f"Manifest: {manifest.resolve()}")
@@ -54,4 +62,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

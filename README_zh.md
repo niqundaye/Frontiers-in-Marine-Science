@@ -9,7 +9,9 @@
 - 论文 10 幅图的组合版再生成（PNG + SVG）；
 - 论文 4 个表的结构化 CSV；
 - 图 2-10 的全部绘图数据 CSV；
-- 2023 年关键数据与农业农村部公报的逐项核验，并整理 2021-2022 年官方入口；
+- 世界银行/FAO 2014-2023 捕捞、养殖和渔业总产量开放数据；
+- 可访问农业农村部年度公报的机器可读提取及来源清单；
+- 每张图、每个表均有代码、输入数据和输出结果同目录的独立实现包；
 - 248 维生产—加工—营销（PPMS）约束优化模型；
 - Logistic 混沌初始化、约束违反反馈修复、自适应参考点迁移；
 - NSGA-III、NSGA-II 的可运行烟雾测试；
@@ -33,7 +35,8 @@
 ```powershell
 .venv\Scripts\python -m pip install -e .
 .venv\Scripts\python -m fishery_repro all
+.venv\Scripts\python -m fishery_repro public-data
 .venv\Scripts\python -m pytest
 ```
 
-结果位于 `results/`。若后续获得作者原始省级数据，只需替换 `FisheryPPMSProblem` 中的代理系数来源，即可把当前“结构复现”升级为“严格数值复现”。
+结果位于 `results/`，逐项实现包位于 `implementations/`，在线公开数据位于 `data/public/`。若后续获得作者原始省级数据，只需替换 `FisheryPPMSProblem` 中的代理系数来源，即可把当前“结构复现”升级为“严格数值复现”。

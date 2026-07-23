@@ -7,4 +7,6 @@ dist/
 build/
 *.egg-info/
 results/benchmark/raw_runs/
-
+node_modules/
+tmp/
+*.inspect.ndjson
