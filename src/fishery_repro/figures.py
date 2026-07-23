@@ -41,6 +41,7 @@ def _style() -> None:
             "grid.linewidth": 0.6,
             "figure.facecolor": "white",
             "savefig.facecolor": "white",
+            "svg.hashsalt": "fishery-ia-nsga3-reproduction",
         }
     )
 
@@ -50,7 +51,15 @@ def _save(fig: plt.Figure, stem: str, output_dir: Path, formats: tuple[str, ...]
     paths: list[Path] = []
     for extension in formats:
         path = output_dir / f"{stem}.{extension}"
-        fig.savefig(path, dpi=dpi, bbox_inches="tight")
+        save_kwargs = {"dpi": dpi, "bbox_inches": "tight"}
+        if extension == "svg":
+            save_kwargs["metadata"] = {"Date": None}
+        fig.savefig(path, **save_kwargs)
+        if extension == "svg":
+            normalized = "\n".join(
+                line.rstrip() for line in path.read_text(encoding="utf-8").splitlines()
+            )
+            path.write_text(normalized + "\n", encoding="utf-8")
         paths.append(path)
     plt.close(fig)
     return paths

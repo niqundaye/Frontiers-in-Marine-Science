@@ -1,0 +1,77 @@
+from __future__ import annotations
+
+import hashlib
+from pathlib import Path
+
+import pandas as pd
+
+
+ROOT = Path(__file__).resolve().parents[1]
+TARGET = ROOT / "ARTIFACT_MANIFEST.csv"
+INCLUDED_ROOTS = (
+    ".github",
+    "configs",
+    "data",
+    "docs",
+    "implementations",
+    "results",
+    "scripts",
+    "src",
+    "tests",
+)
+INCLUDED_FILES = (
+    "CITATION.cff",
+    "LICENSE",
+    "README.md",
+    "README_zh.md",
+    "environment.yml",
+    "pyproject.toml",
+    "requirements-dev.txt",
+    "requirements.txt",
+)
+
+
+def provenance_class(path: Path) -> str:
+    relative = path.relative_to(ROOT).as_posix()
+    if relative.startswith("data/paper/"):
+        return "exact_article_transcription"
+    if relative.startswith("data/public/") or relative.startswith("data/verified/"):
+        return "public_source"
+    if relative.startswith("data/processed/") or relative.startswith("results/"):
+        return "processed_data"
+    if relative.startswith("implementations/"):
+        return "per_result_artifact"
+    if path.suffix.lower() in {".py", ".yml", ".yaml", ".toml"}:
+        return "code_or_configuration"
+    return "documentation_or_license"
+
+
+def main() -> None:
+    paths: list[Path] = [ROOT / name for name in INCLUDED_FILES]
+    for root_name in INCLUDED_ROOTS:
+        paths.extend(
+            path
+            for path in (ROOT / root_name).rglob("*")
+            if path.is_file()
+            and "__pycache__" not in path.parts
+            and path.suffix.lower() not in {".pyc", ".pyo"}
+        )
+    unique = sorted({path.resolve() for path in paths if path.exists() and path.resolve() != TARGET.resolve()})
+    rows = []
+    for path in unique:
+        content = path.read_bytes()
+        rows.append(
+            {
+                "path": path.relative_to(ROOT).as_posix(),
+                "bytes": len(content),
+                "sha256": hashlib.sha256(content).hexdigest(),
+                "provenance_class": provenance_class(path),
+            }
+        )
+    pd.DataFrame(rows).to_csv(TARGET, index=False)
+    print(f"{len(rows)} files recorded")
+    print(TARGET.resolve())
+
+
+if __name__ == "__main__":
+    main()

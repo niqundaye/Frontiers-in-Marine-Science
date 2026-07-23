@@ -1,0 +1,13 @@
+data_status,algorithm,indicator,n_points,linear_slope_per_alpha,linear_intercept,endpoint_change
+经过处理的数据 / processed data; not author-run logs,IA-NSGA-III,Ecological security,6,0.0022857142857135035,0.9968095238095254,0.0010000000000000009
+经过处理的数据 / processed data; not author-run logs,IA-NSGA-III,Economic efficiency,6,0.33285714285714224,0.4914285714285725,0.16499999999999992
+经过处理的数据 / processed data; not author-run logs,IA-NSGA-III,Social reliability,6,0.1628571428571421,0.7214285714285729,0.07999999999999996
+经过处理的数据 / processed data; not author-run logs,MOEA/D,Ecological security,6,0.027142857142856445,0.8575714285714298,0.013000000000000012
+经过处理的数据 / processed data; not author-run logs,MOEA/D,Economic efficiency,6,0.10714285714285685,0.6069047619047625,0.05500000000000005
+经过处理的数据 / processed data; not author-run logs,MOEA/D,Social reliability,6,0.07999999999999968,0.6650000000000008,0.040000000000000036
+经过处理的数据 / processed data; not author-run logs,NSGA-II,Ecological security,6,0.027999999999999987,0.7916666666666669,0.013000000000000012
+经过处理的数据 / processed data; not author-run logs,NSGA-II,Economic efficiency,6,0.09942857142857127,0.535380952380953,0.050000000000000044
+经过处理的数据 / processed data; not author-run logs,NSGA-II,Social reliability,6,0.08142857142857149,0.6007142857142856,0.039999999999999925
+经过处理的数据 / processed data; not author-run logs,NSGA-III,Ecological security,6,0.03199999999999917,0.8930000000000013,0.014999999999999902
+经过处理的数据 / processed data; not author-run logs,NSGA-III,Economic efficiency,6,0.1499999999999999,0.6150000000000003,0.07499999999999996
+经过处理的数据 / processed data; not author-run logs,NSGA-III,Social reliability,6,0.07571428571428493,0.7395238095238108,0.039999999999999925

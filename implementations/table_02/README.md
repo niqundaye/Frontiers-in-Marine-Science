@@ -1,9 +1,10 @@
 # 表 2 独立实现包
 
 - `data.csv`：论文表 2 的精确结构化转录；
-- `validate.py`：行数、可读性和基本完整性检查；
-- 原始集中版本：[`data/paper/table_2_economic_welfare.csv`](../../data/paper/table_2_economic_welfare.csv)。
+- `analysis.py`：字段顺序、行数、有限数值、摘要统计和 SHA-256 校验；
+- `validation_report.json`：机器可读审计结果；
+- 原始集中版本：`../../data/paper/table_2_economic_welfare.csv`。
 
 ```powershell
-python implementations/table_02/validate.py
+.venv\Scripts\python implementations/table_02/analysis.py
 ```

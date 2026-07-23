@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "experiment": {
+    "name": "processed_data_surrogate_demo",
+    "algorithms": [
+      "IA-NSGA-III",
+      "NSGA-III",
+      "NSGA-II"
+    ],
+    "seeds": [
+      1809036,
+      1809037,
+      1809038,
+      1809039,
+      1809040
+    ],
+    "population": 48,
+    "generations": 30,
+    "problem_seed": 1809036,
+    "operator": {
+      "crossover_probability": 1.0,
+      "crossover_eta": 20,
+      "mutation_probability": 0.004032258064516129,
+      "mutation_eta": 20,
+      "chaotic_mu": 4.0,
+      "relocation_frequency": 10,
+      "adaptive_factor": 0.1,
+      "constraint_penalty": 100.0
+    },
+    "save_decision_vectors": true,
+    "data_status": "经过处理的数据 / public-data surrogate; not author-run logs"
+  },
+  "data_status": "经过处理的数据 / public-data surrogate; not author-run logs",
+  "started_utc": "2026-07-23T03:14:15.274825+00:00",
+  "completed_utc": "2026-07-23T03:14:36.866115+00:00",
+  "wall_clock_seconds": 21.59129,
+  "config_sha256": "57d67fe5d1ed44c8ff0770412ec07ab0983dd32d67f5066933e91df59c01c0eb",
+  "runtime": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pymoo": "0.6.1.6",
+      "scipy": "1.17.1",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "model_dimensions": {
+    "regions": 31,
+    "sectors": 4,
+    "modes": 2,
+    "decision_variables": 248,
+    "objectives": [
+      "social_reliability",
+      "economic_efficiency",
+      "ecological_security"
+    ],
+    "constraints": [
+      "national_capture_tac",
+      "capture_share",
+      "national_processing_capacity",
+      "national_total_supply",
+      "regional_cold_storage",
+      "minimum_supply",
+      "fleet_power"
+    ]
+  },
+  "output_rows": {
+    "generation_log": 450,
+    "relocation_log": 15,
+    "final_solutions": 720,
+    "run_summary": 15
+  },
+  "disclosure": "This is an executable public-data surrogate. The article's province-level coefficient matrix and original 30-run logs were not available."
+}

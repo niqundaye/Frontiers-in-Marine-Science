@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "table": 3,
+  "data_status": "论文表格精确转录 / exact article-table transcription",
+  "rows": 10,
+  "columns": [
+    "year",
+    "total_production_tonnes",
+    "marine_aquaculture_tonnes",
+    "domestic_capture_tonnes",
+    "distant_water_capture_tonnes",
+    "processing_enterprises",
+    "cold_storage_units",
+    "fleet_power_kw",
+    "provenance"
+  ],
+  "expected_rows": 10,
+  "status": "pass"
+}

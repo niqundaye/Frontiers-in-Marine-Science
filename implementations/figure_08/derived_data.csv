@@ -1,0 +1,4 @@
+data_status,tac,pareto_points,social_mean,economic_mean,ecological_mean,hv,sd
+经过处理的数据 / processed data; not author-run logs,0.9,90,0.5770269236585494,0.5643942559705789,0.9274747929469126,0.942,0.005
+经过处理的数据 / processed data; not author-run logs,1.0,90,0.6556561516685332,0.6104891974452664,0.8833301849041231,0.961,0.004
+经过处理的数据 / processed data; not author-run logs,1.1,90,0.7131795729713869,0.70407711616484,0.8313776954421883,0.973,0.006

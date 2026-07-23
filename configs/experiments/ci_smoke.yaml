@@ -1,0 +1,20 @@
+name: ci_smoke
+data_status: "经过处理的数据 / public-data surrogate; not author-run logs"
+algorithms:
+  - IA-NSGA-III
+  - NSGA-III
+  - NSGA-II
+seeds: [1809036, 1809037]
+population: 24
+generations: 8
+problem_seed: 1809036
+save_decision_vectors: false
+operator:
+  crossover_probability: 1.0
+  crossover_eta: 20
+  mutation_probability: 0.004032258064516129
+  mutation_eta: 20
+  chaotic_mu: 4.0
+  relocation_frequency: 4
+  adaptive_factor: 0.1
+  constraint_penalty: 100.0

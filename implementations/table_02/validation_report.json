@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "table": 2,
+  "data_status": "论文表格精确转录 / exact article-table transcription",
+  "rows": 10,
+  "columns": [
+    "year",
+    "total_economic_output",
+    "capture_value",
+    "aquaculture_value",
+    "processing_value",
+    "circulation_service",
+    "per_capita_income_rmb",
+    "export_value_million_usd",
+    "paper_reported_monetary_unit",
+    "provenance"
+  ],
+  "expected_rows": 10,
+  "status": "pass"
+}

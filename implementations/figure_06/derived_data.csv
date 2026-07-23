@@ -1,0 +1,15 @@
+data_status,parameter,setting,hv,sd,lower_1sd,upper_1sd,signal_to_noise,rank_within_parameter,is_best
+经过处理的数据 / processed data; not author-run logs,adaptive_factor,0.0,0.86,0.014,0.846,0.874,61.42857142857142,6.0,False
+经过处理的数据 / processed data; not author-run logs,adaptive_factor,0.05,0.915,0.01,0.905,0.925,91.5,4.0,False
+经过处理的数据 / processed data; not author-run logs,adaptive_factor,0.1,0.958,0.004,0.954,0.962,239.49999999999997,1.0,True
+经过处理的数据 / processed data; not author-run logs,adaptive_factor,0.15,0.945,0.006,0.939,0.951,157.5,2.0,False
+经过处理的数据 / processed data; not author-run logs,adaptive_factor,0.2,0.92,0.009,0.911,0.929,102.22222222222223,3.0,False
+经过处理的数据 / processed data; not author-run logs,adaptive_factor,0.3,0.89,0.014,0.876,0.904,63.57142857142857,5.0,False
+经过处理的数据 / processed data; not author-run logs,adaptive_factor,0.4,0.85,0.02,0.83,0.87,42.5,7.0,False
+经过处理的数据 / processed data; not author-run logs,relocation_frequency,0.0,0.88,0.016,0.864,0.896,55.0,6.0,False
+经过处理的数据 / processed data; not author-run logs,relocation_frequency,20.0,0.935,0.01,0.925,0.9450000000000001,93.5,3.0,False
+经过处理的数据 / processed data; not author-run logs,relocation_frequency,50.0,0.958,0.004,0.954,0.962,239.49999999999997,1.0,True
+经过处理的数据 / processed data; not author-run logs,relocation_frequency,75.0,0.945,0.007,0.938,0.952,135.0,2.0,False
+经过处理的数据 / processed data; not author-run logs,relocation_frequency,100.0,0.925,0.01,0.915,0.935,92.5,4.0,False
+经过处理的数据 / processed data; not author-run logs,relocation_frequency,150.0,0.89,0.015,0.875,0.905,59.333333333333336,5.0,False
+经过处理的数据 / processed data; not author-run logs,relocation_frequency,200.0,0.87,0.021,0.849,0.891,41.42857142857142,7.0,False

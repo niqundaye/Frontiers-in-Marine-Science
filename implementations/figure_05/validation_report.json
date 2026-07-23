@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "figure": 5,
+  "title": "Pareto-set comparison",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "6732dd13d345901f5a2b71a2a3ff1be6f724073d3ce3ba46bb75af69da944a7f",
+  "input_rows": 200,
+  "input_columns": [
+    "algorithm",
+    "F1",
+    "F2",
+    "F3"
+  ],
+  "schema_checks": [
+    "algorithm: string, valid",
+    "F1: number, valid",
+    "F2: number, valid",
+    "F3: number, valid"
+  ],
+  "semantic_checks": [],
+  "transformations": [
+    "Convert maximization objectives to minimization costs (1-F).",
+    "Identify non-dominated points within each algorithm.",
+    "Compute Euclidean distance to the ideal point (1,1,1)."
+  ],
+  "derived_rows": 200,
+  "status": "pass"
+}

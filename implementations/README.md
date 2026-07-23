@@ -1,6 +1,8 @@
-# 分结果自包含实现包
+# 分结果、自包含实现包
 
-本目录把每个论文结果所需的**代码、经过处理的数据、DOCX 原图结果、代码重绘结果和说明**放在同一目录中，便于逐项查看和运行。共享数学实现仍保留在 `src/fishery_repro/`，各目录的 `run.py` 或 `validate.py` 是明确的独立入口。
+每个结果目录同时提供代码、输入数据、派生数据、论文原图、代码重绘图和机器可读校验报告。
+共享算法没有隐藏在 notebook 中，而是位于 `src/fishery_repro/` 并由单元测试覆盖；每个目录的
+`analysis.py` 显式声明自己的字段模式、唯一键和数据变换。
 
 - [图 01](figure_01/README.md)
 - [图 02](figure_02/README.md)
@@ -16,4 +18,4 @@
 - [表 02](table_02/README.md)
 - [表 03](table_03/README.md)
 - [表 04](table_04/README.md)
-- [248 维模型与算法基准](model_248d/README.md)
+- [248 维模型与完整实验](model_248d/README.md)

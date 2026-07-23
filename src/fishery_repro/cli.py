@@ -8,6 +8,7 @@ from .calibrated import write_calibrated_data
 from .config import ROOT, load_config
 from .dataset import write_audit
 from .figures import make_all_figures
+from .experiment import run_experiment
 from .manifest import write_manifest
 from .manuscript_figures import compose_manuscript_figures
 from .public_data import download_public_data
@@ -17,11 +18,16 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Reproduce the disclosed and reconstructable results of Frontiers 13:1809036")
     parser.add_argument(
         "command",
-        choices=["data", "figures", "audit", "benchmark", "public-data", "all"],
+        choices=["data", "figures", "audit", "benchmark", "experiment", "public-data", "all"],
         nargs="?",
         default="all",
     )
     parser.add_argument("--config", default=str(ROOT / "configs" / "paper.yaml"))
+    parser.add_argument(
+        "--experiment-config",
+        default=str(ROOT / "configs" / "experiments" / "processed_demo.yaml"),
+        help="YAML protocol used by the experiment command",
+    )
     parser.add_argument("--output-root", default=str(ROOT / "results"))
     return parser
 
@@ -54,6 +60,12 @@ def main() -> None:
             population=int(smoke["smoke_population"]),
             generations=int(smoke["smoke_generations"]),
             seed=seed,
+        )
+    if args.command == "experiment":
+        experiment_name = Path(args.experiment_config).stem
+        run_experiment(
+            args.experiment_config,
+            output_root / "experiments" / experiment_name,
         )
     if args.command == "public-data":
         download_public_data(ROOT / "data" / "public")

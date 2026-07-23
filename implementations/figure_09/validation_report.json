@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "figure": 9,
+  "title": "Algorithm-component ablation",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "cf91d6b3b3d8b9453c8dc0972209ba643194ca9f782ccd96477a7e92ca6ee065",
+  "input_rows": 1515,
+  "input_columns": [
+    "generation",
+    "indicator",
+    "variant",
+    "value"
+  ],
+  "schema_checks": [
+    "generation: number, valid",
+    "indicator: string, valid",
+    "variant: string, valid",
+    "value: number, valid",
+    "unique key ('generation', 'indicator', 'variant'): valid"
+  ],
+  "semantic_checks": [],
+  "transformations": [
+    "Sort every ablation trajectory by generation.",
+    "Report terminal value and generation reaching 95% of its terminal value."
+  ],
+  "derived_rows": 15,
+  "status": "pass"
+}

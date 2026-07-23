@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "figure": 3,
+  "title": "Thirty-run statistical comparison",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "16075dc173bedab98dc899ecc4c94498bb508cba931e94282c495d649a1b3ca7",
+  "input_rows": 240,
+  "input_columns": [
+    "run",
+    "algorithm",
+    "metric",
+    "value"
+  ],
+  "schema_checks": [
+    "run: number, valid",
+    "algorithm: string, valid",
+    "metric: string, valid",
+    "value: number, valid",
+    "unique key ('run', 'algorithm', 'metric'): valid"
+  ],
+  "semantic_checks": [
+    "30 run identifiers per algorithm-metric cell"
+  ],
+  "transformations": [
+    "Verify exactly 30 independent run identifiers per algorithm-metric cell.",
+    "Compute mean, sample SD, median, quartiles, minimum and maximum."
+  ],
+  "derived_rows": 8,
+  "status": "pass"
+}

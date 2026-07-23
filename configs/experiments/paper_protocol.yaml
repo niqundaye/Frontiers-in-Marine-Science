@@ -1,0 +1,51 @@
+name: article_disclosed_protocol
+data_status: "协议复现配置；需要作者未公开的省级系数后才能构成严格数值复现"
+algorithms:
+  - IA-NSGA-III
+  - NSGA-III
+  - MOEA/D
+  - NSGA-II
+seeds:
+  - 1809036
+  - 1809037
+  - 1809038
+  - 1809039
+  - 1809040
+  - 1809041
+  - 1809042
+  - 1809043
+  - 1809044
+  - 1809045
+  - 1809046
+  - 1809047
+  - 1809048
+  - 1809049
+  - 1809050
+  - 1809051
+  - 1809052
+  - 1809053
+  - 1809054
+  - 1809055
+  - 1809056
+  - 1809057
+  - 1809058
+  - 1809059
+  - 1809060
+  - 1809061
+  - 1809062
+  - 1809063
+  - 1809064
+  - 1809065
+population: 200
+generations: 1000
+problem_seed: 1809036
+save_decision_vectors: true
+operator:
+  crossover_probability: 1.0
+  crossover_eta: 20
+  mutation_probability: 0.004032258064516129
+  mutation_eta: 20
+  chaotic_mu: 4.0
+  relocation_frequency: 50
+  adaptive_factor: 0.1
+  constraint_penalty: 100.0

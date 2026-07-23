@@ -1,0 +1,4 @@
+algorithm,runs,hypervolume_mean,hypervolume_sd,igd_mean,igd_sd,feasible_fraction_mean,elapsed_seconds_mean,data_status
+IA-NSGA-III,5,0.5409335833866672,0.020649071875356462,0.018589203660488336,0.010682557256843176,1.0,0.27172540000174195,经过处理的数据 / public-data surrogate; not author-run logs
+NSGA-II,5,0.3705354568032595,0.007917657772671116,0.16388471210851746,0.005768280345916903,1.0,0.269475660007447,经过处理的数据 / public-data surrogate; not author-run logs
+NSGA-III,5,0.3500278302253193,0.011223627052316382,0.18696532573713023,0.014719254204401335,1.0,0.30353884000796827,经过处理的数据 / public-data surrogate; not author-run logs

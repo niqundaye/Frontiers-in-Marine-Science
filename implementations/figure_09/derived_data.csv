@@ -1,0 +1,16 @@
+data_status,indicator,variant,terminal_value,generation_at_95pct_terminal
+经过处理的数据 / processed data; not author-run logs,Ecological security,A-NSGA-III,0.9398044978404988,510
+经过处理的数据 / processed data; not author-run logs,Ecological security,I-NSGA-III,0.9979913417323126,390
+经过处理的数据 / processed data; not author-run logs,Ecological security,IA-NSGA-III,0.9999655405317492,430
+经过处理的数据 / processed data; not author-run logs,Ecological security,NSGA-II,0.8104142416272849,750
+经过处理的数据 / processed data; not author-run logs,Ecological security,NSGA-III,0.9188995410430312,590
+经过处理的数据 / processed data; not author-run logs,Economic efficiency,A-NSGA-III,0.799836323773441,500
+经过处理的数据 / processed data; not author-run logs,Economic efficiency,I-NSGA-III,0.8999922660353992,390
+经过处理的数据 / processed data; not author-run logs,Economic efficiency,IA-NSGA-III,0.9499674133289366,430
+经过处理的数据 / processed data; not author-run logs,Economic efficiency,NSGA-II,0.6426163753075034,740
+经过处理的数据 / processed data; not author-run logs,Economic efficiency,NSGA-III,0.75910915227293,580
+经过处理的数据 / processed data; not author-run logs,Social reliability,A-NSGA-III,0.8798181375260455,510
+经过处理的数据 / processed data; not author-run logs,Social reliability,I-NSGA-III,0.8999922660353992,390
+经过处理的数据 / processed data; not author-run logs,Social reliability,IA-NSGA-III,0.9599670387694992,430
+经过处理的数据 / processed data; not author-run logs,Social reliability,NSGA-II,0.6919686889309685,750
+经过处理的数据 / processed data; not author-run logs,Social reliability,NSGA-III,0.8190305480617178,580

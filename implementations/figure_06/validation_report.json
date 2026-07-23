@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "figure": 6,
+  "title": "Parameter sensitivity",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "a5080a941f8832f3a3c420fc4c018a210015535180b25f817d4896322bc140d7",
+  "input_rows": 14,
+  "input_columns": [
+    "parameter",
+    "setting",
+    "hv",
+    "sd"
+  ],
+  "schema_checks": [
+    "parameter: string, valid",
+    "setting: number, valid",
+    "hv: number, valid",
+    "sd: number, valid",
+    "unique key ('parameter', 'setting'): valid"
+  ],
+  "semantic_checks": [],
+  "transformations": [
+    "Compute lower and upper one-SD bands.",
+    "Rank settings by HV within each parameter and identify the optimum."
+  ],
+  "derived_rows": 14,
+  "status": "pass"
+}

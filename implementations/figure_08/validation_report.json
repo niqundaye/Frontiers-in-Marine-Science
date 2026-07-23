@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "figure": 8,
+  "title": "TAC policy sensitivity",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "3e0301cc8f36195a6dc64ef4e26bc573a02e40c847f1eec36859e09a97542d50",
+  "input_rows": 273,
+  "input_columns": [
+    "record_type",
+    "tac",
+    "social",
+    "economic",
+    "ecological",
+    "hv",
+    "sd"
+  ],
+  "schema_checks": [
+    "record_type: string, valid",
+    "tac: number, valid",
+    "social: number, valid",
+    "economic: number, valid",
+    "ecological: number, valid",
+    "hv: number, valid",
+    "sd: number, valid"
+  ],
+  "semantic_checks": [
+    "conditional Pareto/HV fields valid"
+  ],
+  "transformations": [
+    "Validate conditional fields for Pareto and HV record types.",
+    "Summarize objective centroids and HV uncertainty for every TAC scenario."
+  ],
+  "derived_rows": 3,
+  "status": "pass"
+}

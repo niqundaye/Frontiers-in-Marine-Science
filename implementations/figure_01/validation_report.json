@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "figure": 1,
+  "title": "PPMS-MOO and IA-NSGA-III architecture",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": null,
+  "input_sha256": null,
+  "input_rows": 0,
+  "input_columns": [],
+  "schema_checks": [],
+  "semantic_checks": [],
+  "transformations": [
+    "Declare the 31 x 4 x 2 decision tensor.",
+    "Map three objectives and seven inequality constraints.",
+    "Connect chaotic sampling, constraint repair and adaptive reference relocation."
+  ],
+  "derived_rows": 6,
+  "status": "pass"
+}

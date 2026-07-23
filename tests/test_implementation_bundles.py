@@ -6,6 +6,9 @@ def test_each_figure_has_code_input_when_needed_and_results():
         folder = ROOT / "implementations" / f"figure_{number:02d}"
         assert (folder / "README.md").is_file()
         assert (folder / "run.py").is_file()
+        assert (folder / "analysis.py").is_file()
+        assert (folder / "derived_data.csv").is_file()
+        assert (folder / "validation_report.json").is_file()
         assert len(list(folder.glob("*.png"))) == 1
         assert len(list(folder.glob("*.svg"))) == 0
         generated = folder / "generated_from_processed_data"
@@ -20,3 +23,5 @@ def test_each_paper_table_has_data_and_validator():
         folder = ROOT / "implementations" / f"table_{number:02d}"
         assert (folder / "data.csv").is_file()
         assert (folder / "validate.py").is_file()
+        assert (folder / "analysis.py").is_file()
+        assert (folder / "validation_report.json").is_file()

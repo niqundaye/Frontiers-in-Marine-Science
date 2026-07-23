@@ -1,0 +1,72 @@
+check,status
+Figure 1 has analysis.py,pass
+Figure 1 has derived data,pass
+Figure 1 has validation report,pass
+Figure 1 validation passes,pass
+Figure 1 processed-data disclosure,pass
+Figure 2 has analysis.py,pass
+Figure 2 has derived data,pass
+Figure 2 has validation report,pass
+Figure 2 validation passes,pass
+Figure 2 processed-data disclosure,pass
+Figure 3 has analysis.py,pass
+Figure 3 has derived data,pass
+Figure 3 has validation report,pass
+Figure 3 validation passes,pass
+Figure 3 processed-data disclosure,pass
+Figure 4 has analysis.py,pass
+Figure 4 has derived data,pass
+Figure 4 has validation report,pass
+Figure 4 validation passes,pass
+Figure 4 processed-data disclosure,pass
+Figure 5 has analysis.py,pass
+Figure 5 has derived data,pass
+Figure 5 has validation report,pass
+Figure 5 validation passes,pass
+Figure 5 processed-data disclosure,pass
+Figure 6 has analysis.py,pass
+Figure 6 has derived data,pass
+Figure 6 has validation report,pass
+Figure 6 validation passes,pass
+Figure 6 processed-data disclosure,pass
+Figure 7 has analysis.py,pass
+Figure 7 has derived data,pass
+Figure 7 has validation report,pass
+Figure 7 validation passes,pass
+Figure 7 processed-data disclosure,pass
+Figure 8 has analysis.py,pass
+Figure 8 has derived data,pass
+Figure 8 has validation report,pass
+Figure 8 validation passes,pass
+Figure 8 processed-data disclosure,pass
+Figure 9 has analysis.py,pass
+Figure 9 has derived data,pass
+Figure 9 has validation report,pass
+Figure 9 validation passes,pass
+Figure 9 processed-data disclosure,pass
+Figure 10 has analysis.py,pass
+Figure 10 has derived data,pass
+Figure 10 has validation report,pass
+Figure 10 validation passes,pass
+Figure 10 processed-data disclosure,pass
+Table 1 has analysis.py,pass
+Table 1 validation passes,pass
+Table 2 has analysis.py,pass
+Table 2 validation passes,pass
+Table 3 has analysis.py,pass
+Table 3 validation passes,pass
+Table 4 has analysis.py,pass
+Table 4 validation passes,pass
+Experiment has generation_log.csv,pass
+Experiment has run_metadata.json,pass
+Experiment has algorithm_summary.csv,pass
+Experiment has final_population_objectives_constraints.csv,pass
+Experiment has final_population_decision_vectors.csv,pass
+Experiment has reference_relocation_log.csv,pass
+Experiment has config_snapshot.yaml,pass
+Experiment has run_summary.csv,pass
+Run summary covers every algorithm-seed pair,pass
+Every run has a complete generation trace,pass
+Decision-vector output has 248 variables,pass
+Final solutions expose seven constraints,pass
+Final solutions disclose surrogate status,pass

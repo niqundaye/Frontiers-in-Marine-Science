@@ -1,0 +1,7 @@
+data_status,stage,component,implementation,detail
+经过处理的数据 / processed data; not author-run logs,1,decision tensor,model.py::decode,31 regions x 4 sectors x 2 modes = 248
+经过处理的数据 / processed data; not author-run logs,2,three objectives,model.py::evaluate_components,"social, economic, ecological"
+经过处理的数据 / processed data; not author-run logs,3,seven constraints,model.py::evaluate_components,all residuals feasible when <= 0
+经过处理的数据 / processed data; not author-run logs,4,chaotic initialization,model.py::ChaoticSampling,logistic map z(t+1)=mu*z(t)*(1-z(t))
+经过处理的数据 / processed data; not author-run logs,5,feedback repair,model.py::repair,"TAC, cold storage, minimum supply"
+经过处理的数据 / processed data; not author-run logs,6,adaptive directions,experiment.py::GenerationAuditCallback,nearest feasible objective ray relocation

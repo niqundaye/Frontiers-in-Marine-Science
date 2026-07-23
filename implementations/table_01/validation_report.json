@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "table": 1,
+  "data_status": "论文表格精确转录 / exact article-table transcription",
+  "rows": 3,
+  "columns": [
+    "index",
+    "set",
+    "description",
+    "categories",
+    "count"
+  ],
+  "expected_rows": 3,
+  "status": "pass"
+}

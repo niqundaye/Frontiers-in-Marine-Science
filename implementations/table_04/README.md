@@ -1,9 +1,10 @@
 # 表 4 独立实现包
 
 - `data.csv`：论文表 4 的精确结构化转录；
-- `validate.py`：行数、可读性和基本完整性检查；
-- 原始集中版本：[`data/paper/table_4_algorithm_parameters.csv`](../../data/paper/table_4_algorithm_parameters.csv)。
+- `analysis.py`：字段顺序、行数、有限数值、摘要统计和 SHA-256 校验；
+- `validation_report.json`：机器可读审计结果；
+- 原始集中版本：`../../data/paper/table_4_algorithm_parameters.csv`。
 
 ```powershell
-python implementations/table_04/validate.py
+.venv\Scripts\python implementations/table_04/analysis.py
 ```

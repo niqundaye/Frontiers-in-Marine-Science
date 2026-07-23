@@ -1,0 +1,16 @@
+algorithm,run_id,seed,elapsed_seconds,population,generations,function_evaluations,feasible_fraction,non_dominated_count,data_status,hypervolume,igd_to_pooled_reference,metric_population
+IA-NSGA-III,1,1809036,0.14070210000500083,48,30,1440,1.0,25,经过处理的数据 / public-data surrogate; not author-run logs,0.551835749310715,0.0158573352546555,feasible
+IA-NSGA-III,2,1809037,0.21856740000657737,48,30,1440,1.0,13,经过处理的数据 / public-data surrogate; not author-run logs,0.5168576916015325,0.02935030348187233,feasible
+IA-NSGA-III,3,1809038,0.33476270001847297,48,30,1440,1.0,23,经过处理的数据 / public-data surrogate; not author-run logs,0.5210319655769433,0.030328265087981483,feasible
+IA-NSGA-III,4,1809039,0.33800470002461225,48,30,1440,1.0,18,经过处理的数据 / public-data surrogate; not author-run logs,0.5518158454555694,0.008757400661268792,feasible
+IA-NSGA-III,5,1809040,0.3265900999540463,48,30,1440,1.0,30,经过处理的数据 / public-data surrogate; not author-run logs,0.5631266649885759,0.00865271381666356,feasible
+NSGA-III,1,1909036,0.29457400005776435,48,30,1440,1.0,27,经过处理的数据 / public-data surrogate; not author-run logs,0.3396171871418373,0.19828641465283856,feasible
+NSGA-III,2,1909037,0.31018130003940314,48,30,1440,1.0,12,经过处理的数据 / public-data surrogate; not author-run logs,0.3508013996969388,0.1909045583223839,feasible
+NSGA-III,3,1909038,0.2983017999213189,48,30,1440,1.0,9,经过处理的数据 / public-data surrogate; not author-run logs,0.3390335660555999,0.1979628094399468,feasible
+NSGA-III,4,1909039,0.3073537000454962,48,30,1440,1.0,16,经过处理的数据 / public-data surrogate; not author-run logs,0.36587519974685845,0.16249489865914996,feasible
+NSGA-III,5,1909040,0.30728339997585863,48,30,1440,1.0,15,经过处理的数据 / public-data surrogate; not author-run logs,0.35481179848536193,0.18517794761133194,feasible
+NSGA-II,1,2009036,0.2711834000656381,48,30,1440,1.0,26,经过处理的数据 / public-data surrogate; not author-run logs,0.3778132349501283,0.15969783885434263,feasible
+NSGA-II,2,2009037,0.2667796000605449,48,30,1440,1.0,21,经过处理的数据 / public-data surrogate; not author-run logs,0.3804789909257021,0.15642110547139138,feasible
+NSGA-II,3,2009038,0.269775899942033,48,30,1440,1.0,18,经过处理的数据 / public-data surrogate; not author-run logs,0.3647778585845314,0.16603091401794684,feasible
+NSGA-II,4,2009039,0.2755964999087155,48,30,1440,1.0,18,经过处理的数据 / public-data surrogate; not author-run logs,0.3649753345389579,0.16639129233806388,feasible
+NSGA-II,5,2009040,0.2640429000603035,48,30,1440,1.0,17,经过处理的数据 / public-data surrogate; not author-run logs,0.3646318650169779,0.1708824098608426,feasible

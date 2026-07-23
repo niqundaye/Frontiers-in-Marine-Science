@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "figure": 10,
+  "title": "PPM-module ablation",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "c8e9643fba1a294ad6eb41c572257f5956d8c84ca53c2e26f467ccbd81e8cd91",
+  "input_rows": 12,
+  "input_columns": [
+    "scenario",
+    "indicator",
+    "value",
+    "sd"
+  ],
+  "schema_checks": [
+    "scenario: string, valid",
+    "indicator: string, valid",
+    "value: number, valid",
+    "sd: number, valid",
+    "unique key ('scenario', 'indicator'): valid"
+  ],
+  "semantic_checks": [
+    "four scenarios per indicator"
+  ],
+  "transformations": [
+    "Compute one-SD uncertainty bounds.",
+    "Compute absolute and relative loss against the Proposed scenario."
+  ],
+  "derived_rows": 12,
+  "status": "pass"
+}

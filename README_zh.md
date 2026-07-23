@@ -15,7 +15,10 @@
 - 每张图、每个表均有代码、输入数据和输出结果同目录的独立实现包；
 - 248 维生产—加工—营销（PPMS）约束优化模型；
 - Logistic 混沌初始化、约束违反反馈修复、自适应参考点迁移；
-- NSGA-III、NSGA-II 的可运行烟雾测试；
+- IA-NSGA-III、NSGA-III、NSGA-II 的多随机种子独立实验；
+- 逐代可行率、约束违反、HV、非支配解数量和参考方向迁移日志；
+- 每个最终解的 248 维决策向量、三个目标、七类约束残差和解码总量；
+- 每张图的输入模式、唯一键、派生统计和 SHA-256 校验报告；
 - 自动测试、GitHub Actions 和 SHA-256 结果清单。
 
 ## 重要边界
@@ -36,10 +39,30 @@
 
 ```powershell
 .venv\Scripts\python -m pip install -e .
-.venv\Scripts\python -m fishery_repro all
-.venv\Scripts\python -m fishery_repro public-data
-.venv\Scripts\python -m pytest
+.venv\Scripts\python scripts\reproduce_research_artifact.py
 ```
+
+完整研究包命令依次重建数据和图、运行 `5 个种子 × 3 种算法 × 30 代`
+公开代理实验、重建每个结果目录、执行 71 项包级审计和全部单元测试。论文披露的
+`200 个体 × 1000 代 × 30 次独立运行`协议完整写在
+`configs/experiments/paper_protocol.yaml`；该配置只有在补齐作者未公开省级输入后
+才能用于严格数值复现。
+
+## 详细实现和输出
+
+- 算法与模型：`src/fishery_repro/model.py`、`benchmark.py`、`experiment.py`；
+- 逐代和逐次运行结果：`results/experiments/processed_demo/`；
+- 5×3 次运行摘要：`run_summary.csv` 和 `algorithm_summary.csv`；
+- 450 行逐代状态：`generation_log.csv`；
+- 720 个最终种群解：`final_population_objectives_constraints.csv`；
+- 完整 248 维变量：`final_population_decision_vectors.csv`；
+- 参考方向更新：`reference_relocation_log.csv`；
+- 配置与运行环境：`config_snapshot.yaml` 和 `run_metadata.json`；
+- 图 1–10 独立实现：`implementations/figure_01/` 至 `figure_10/`；
+- 表 1–4 独立实现：`implementations/table_01/` 至 `table_04/`；
+- 数据字典：`data/DATA_DICTIONARY.md`；
+- 实验协议与算法公式：`docs/EXPERIMENT_PROTOCOL.md`、`docs/ALGORITHM_IMPLEMENTATION.md`；
+- 复现检查清单：`docs/REPRODUCIBILITY_CHECKLIST.md`。
 
 如需从同一版本的 Word 稿重新导入论文原图：
 

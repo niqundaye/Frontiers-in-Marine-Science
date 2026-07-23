@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "figure": 2,
+  "title": "Convergence comparison",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "eb88a416870530283f6fd94fff6ea15cdf00aa24b942043ae358294faa3a69f6",
+  "input_rows": 808,
+  "input_columns": [
+    "generation",
+    "algorithm",
+    "value",
+    "metric"
+  ],
+  "schema_checks": [
+    "generation: number, valid",
+    "algorithm: string, valid",
+    "value: number, valid",
+    "metric: string, valid",
+    "unique key ('generation', 'algorithm', 'metric'): valid"
+  ],
+  "semantic_checks": [
+    "common generation grid: 101 points"
+  ],
+  "transformations": [
+    "Sort each algorithm-metric trajectory by generation.",
+    "Integrate each curve by the trapezoidal rule.",
+    "Report initial, terminal and absolute change values."
+  ],
+  "derived_rows": 8,
+  "status": "pass"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "figure": 4,
+  "title": "Three-objective KPI radar",
+  "data_status": "经过处理的数据 / processed data; not author-run logs",
+  "input": "input_data.csv",
+  "input_sha256": "054db8c4d8773c61588d994306ca2cd60b7715f1b7ae3a45395054ee10927845",
+  "input_rows": 12,
+  "input_columns": [
+    "algorithm",
+    "indicator",
+    "value"
+  ],
+  "schema_checks": [
+    "algorithm: string, valid",
+    "indicator: string, valid",
+    "value: number, valid",
+    "unique key ('algorithm', 'indicator'): valid"
+  ],
+  "semantic_checks": [
+    "three indicators per algorithm"
+  ],
+  "transformations": [
+    "Verify one value per algorithm-indicator cell.",
+    "Compute mean, minimum and maximum objective score per algorithm."
+  ],
+  "derived_rows": 4,
+  "status": "pass"
+}

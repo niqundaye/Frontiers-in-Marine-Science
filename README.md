@@ -8,6 +8,12 @@ This repository is a transparent, executable reconstruction of:
 
 It uses the figures embedded in the supplied manuscript for all 10 primary article figures, transcribes all 4 article tables, adds traceable public World Bank/FAO and Ministry data, and provides an executable 248-variable PPMS surrogate with chaotic initialization, constraint-feedback repair, and adaptive reference relocation.
 
+Version 0.2 is a reviewable research-software artifact rather than a set of thin
+plot wrappers. It includes explicit operator configuration, multi-seed independent
+runs, per-generation state, reference-direction relocation logs, all final
+248-dimensional decision vectors, three objectives, seven constraint residuals,
+runtime metadata, per-result schemas, derived data and machine-readable validation.
+
 ## Reproduction status
 
 This is **not an author-run exact replication**. As of 2026-07-23, the article page exposes no downloadable supplementary dataset or source-code archive. The 31-province coefficient matrix, regional TAC values, digitalization inputs, worker counts, prices/costs, and original 30-run optimization logs are not published. Derived and public-source material is consistently labelled as processed data:
@@ -28,9 +34,7 @@ Never cite the processed CSV files as the authors' original experimental logs.
 py -3.12 -m venv .venv
 .venv\Scripts\python -m pip install -r requirements-dev.txt
 .venv\Scripts\python -m pip install -e .
-.venv\Scripts\python -m fishery_repro all
-.venv\Scripts\python -m fishery_repro public-data
-.venv\Scripts\python -m pytest
+.venv\Scripts\python scripts\reproduce_research_artifact.py
 ```
 
 Linux/macOS users can replace `.venv\Scripts\python` with `.venv/bin/python`.
@@ -44,6 +48,8 @@ Linux/macOS users can replace `.venv\Scripts\python` with `.venv/bin/python`.
 - `results/data/`: the complete processed CSV used by the comparison plots for Figures 2-10;
 - `results/tables/data_audit.csv`: table consistency and official-source checks;
 - `results/benchmark/smoke_summary.csv`: a small executable surrogate benchmark;
+- `results/experiments/processed_demo/`: 15 independent runs, 450 generation records,
+  720 final-population solutions, full 248-variable vectors and runtime metadata;
 - `results/MANIFEST.csv`: file sizes and SHA-256 checksums.
 
 The default smoke benchmark is intentionally small. The paper setting (`N=200`, `Tmax=1000`, 30 independent runs) is recorded in `configs/paper.yaml`, but exact numerical comparison requires the unpublished author inputs.
