@@ -1,0 +1,16 @@
+category,parameter,symbol,value,notes
+General,Population size,N,200,All algorithms
+General,Maximum generations,Tmax,1000,All algorithms
+General,Independent runs,-,30,All algorithms
+General,Significance level,alpha,0.05,Wilcoxon rank-sum
+Evolutionary operators,Crossover operator,-,SBX,Simulated binary crossover
+Evolutionary operators,Crossover probability,pc,1.0,
+Evolutionary operators,Crossover distribution index,eta_c,20,
+Evolutionary operators,Mutation operator,-,Polynomial mutation,
+Evolutionary operators,Mutation probability,pm,1/D,D=248
+Evolutionary operators,Mutation distribution index,eta_m,20,
+IA-NSGA-III,Chaotic map parameter,mu,4.0,Fully chaotic
+IA-NSGA-III,Reference divisions,H1/H2,12/0,Das-Dennis
+IA-NSGA-III,Relocation frequency,omega,50,Every 50 generations
+IA-NSGA-III,Adaptive adjustment factor,gamma,0.1,
+

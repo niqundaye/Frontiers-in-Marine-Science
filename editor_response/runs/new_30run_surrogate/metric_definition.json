@@ -1,0 +1,18 @@
+{
+  "data_status": "newly executed 30-run surrogate verification; not original author-run logs",
+  "objective_direction": "three maximisation scores converted to minimisation costs using cost=1-score",
+  "objectives": [
+    "social_reliability",
+    "economic_efficiency",
+    "ecological_security"
+  ],
+  "hv_reference_point_cost_space": [
+    1.05,
+    1.05,
+    1.05
+  ],
+  "igd_reference": "pooled non-dominated front from this new experiment",
+  "reference_front_file": "pooled_reference_front.csv",
+  "feasibility_rule": "use feasible final solutions when available; otherwise use all and flag fallback",
+  "important_limitation": "The article's original normalisation, HV reference point, IGD reference front and run outputs are unavailable."
+}

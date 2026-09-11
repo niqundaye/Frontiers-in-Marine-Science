@@ -1,0 +1,12 @@
+﻿field,meaning,unit,original_available,construction
+region_share_proxy,Deterministic regional share used to distribute the national production anchor,ratio,no,Seeded proxy generated in FisheryPPMSProblem(seed=1809036)
+digital_index_proxy,Proxy for the regional EWM digitalisation index described in the manuscript,0-1 score,no,Deterministic spatial gradient plus seeded perturbation; not EWM observations
+workforce_proxy_people,Regional fishery workforce denominator,people,no,National proxy distributed by region share with seeded perturbation
+cold_capacity_proxy_tonnes,Regional processing/cold-chain capacity,tonnes,no,National production anchor multiplied by region share and proxy cold-chain intensity
+power_capacity_proxy_kw,Regional fleet-power capacity,kW,no,2023 national power anchor distributed by region share with seeded perturbation
+upper_bound_proxy_tonnes,Maximum decoded allocation for one region-sector-mode decision variable,tonnes,no,baseline_total x 1.20 x region share x sector share x mode share
+income_coefficient_proxy,Unit social-income coefficient,normalized coefficient,no,Explicit 4x2 surrogate coefficient table
+marginal_value_coefficient_proxy,Processing/marketing marginal output value,normalized coefficient,no,Explicit 4x2 surrogate coefficient table
+supply_chain_cost_coefficient_proxy,Processing and cold-chain/logistics cost,normalized coefficient,no,Explicit 4x2 surrogate coefficient table
+ecological_weight_proxy,Relative ecological desirability weight,normalized coefficient,no,Explicit 4x2 surrogate coefficient table
+fleet_power_coefficient_proxy,Sector-specific fleet-power intensity,relative coefficient,no,Explicit 4-element surrogate coefficient vector

@@ -27,6 +27,21 @@ provenance records and machine-readable validation for independent review.
 > matrix, regional TAC values, digitalization inputs, income/cost coefficients or
 > the original 30-run logs. The repository does not invent those materials.
 
+## Editor-query response package (11 September 2026)
+
+`editor_response/` is the point-by-point evidence package prepared for the
+editorial request concerning the missing 31-province input matrix, underlying
+workbooks and original 30-run records. Start with
+`editor_response/00_READ_ME_FIRST.md` and the draft response letter.
+
+The package contains a 31-row/248-variable calibrated reconstruction, an exact
+availability inventory, official-source extracts, a clearly separated
+article-figure calibration series, and 30 newly executed surrogate runs for each
+of four algorithms (120 runs total) with generation logs, final populations,
+decision vectors and independently recomputed HV/IGD values. These are labelled
+**processed data / calibrated reconstruction / newly executed surrogate data**;
+none may be represented as a recovered historical original.
+
 ## Reviewer quick check
 
 Python 3.12 is recommended.

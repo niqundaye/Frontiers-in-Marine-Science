@@ -1,0 +1,11 @@
+﻿parameter,value,unit,role,source,data_status
+baseline_total,71161716.0,tonnes,2023 production anchor,Paper Table 3,article transcription
+catch_limit,13065600.0,tonnes,national capture constraint in surrogate,Model proxy aligned to 2023 national total capture,calibrated reconstruction; not historical author input
+total_limit,78277887.60000001,tonnes,110% of production anchor,deterministic model rule,calibrated reconstruction; not historical author input
+processing_limit,26329834.919999998,tonnes,37% of production anchor,deterministic model rule,calibrated reconstruction; not historical author input
+minimum_supply,41273795.279999994,tonnes,58% of production anchor,deterministic model rule,calibrated reconstruction; not historical author input
+power_limit,18940154.0,kW,2023 fleet-power anchor,Paper Table 3,article transcription
+capture_share_max,0.28,ratio,constraint threshold,public surrogate implementation,calibrated reconstruction; not historical author input
+hv_reference_1,1.05,cost-space score,new-run HV reference point,declared replacement metric method,newly executed 30-run surrogate verification; not original author-run logs
+hv_reference_2,1.05,cost-space score,new-run HV reference point,declared replacement metric method,newly executed 30-run surrogate verification; not original author-run logs
+hv_reference_3,1.05,cost-space score,new-run HV reference point,declared replacement metric method,newly executed 30-run surrogate verification; not original author-run logs

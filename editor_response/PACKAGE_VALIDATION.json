@@ -1,0 +1,33 @@
+{
+  "prepared_on": "2026-09-11",
+  "status": "PASS",
+  "checks": {
+    "province_rows_equal_31": true,
+    "coefficient_rows_equal_248": true,
+    "region_share_sums_to_one": true,
+    "all_matrix_rows_marked_non_original": true,
+    "four_algorithms_present": true,
+    "thirty_runs_per_algorithm": true,
+    "run_rows_equal_120": true,
+    "generation_rows_equal_3600": true,
+    "hv_recalculation_matches": true,
+    "igd_recalculation_matches": true,
+    "calibrated_figure3_has_30_per_algorithm_metric": true,
+    "workbook_present": true,
+    "response_docx_present": true,
+    "response_pdf_present": true
+  },
+  "counts": {
+    "province_rows": 31,
+    "coefficient_rows": 248,
+    "algorithms": 4,
+    "new_run_rows": 120,
+    "generation_rows": 3600,
+    "calibrated_metric_rows": 240
+  },
+  "maximum_metric_recalculation_difference": {
+    "hv": 1.1102230246251563e-16,
+    "igd": 2.220446049250313e-16
+  },
+  "disclosure": "PASS verifies package consistency only; it does not convert reconstructed/new material into historical original data."
+}

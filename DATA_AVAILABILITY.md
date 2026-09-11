@@ -21,6 +21,15 @@ TAC values, digitalization-index inputs, income/cost coefficients or the authors
 presented as public data. The executable experiment is explicitly labelled a
 processed public-data surrogate.
 
+The retained manuscript, aggregate tables/figures and repository were audited
+again for the editor query dated 11 September 2026. No contemporaneous
+31-province input workbook, coefficient-construction workbook, raw/cleaned
+source spreadsheet, historical seed list, generation population, final Pareto
+front, HV/IGD reference definition or per-run historical metric file was found.
+The accessible evidence cannot establish whether those absent files are stored
+elsewhere, were deleted, or were never exported as standalone files. The exact
+item-by-item inventory and auditable replacements are in `editor_response/`.
+
 ## Data classification
 
 | Class | Repository location | Meaning |
@@ -32,6 +41,8 @@ processed public-data surrogate.
 | Limited independent checks | `data/verified/` | Official national values used for cross-checking |
 | Public-data surrogate outputs | `results/experiments/processed_demo/` | New executable runs, not author-run logs |
 | Unavailable author inputs | Not in repository | Province-level coefficients and original run logs not published |
+| Editor-query reconstruction | `editor_response/data/reconstructed/` | Calibrated 31-province/248-variable replacement; not historical author input |
+| Newly executed 30-run outputs | `editor_response/runs/new_30run_surrogate/` | 30 new runs per four algorithms with full logs; not original article runs |
 
 ## Public sources
 
