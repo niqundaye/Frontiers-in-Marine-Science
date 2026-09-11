@@ -105,30 +105,13 @@ $packages = @(
             'Dockerfile',
             'LICENSE'
         )
-    },
-    [ordered]@{
-        Name = '05_material_availability_and_editor_response'
-        Title = 'Package 5 - Material Availability Statement and Editor Response'
-        Purpose = 'Provides the point-by-point response letter, material availability inventory, author confirmation checklist, data-availability statement, package validation report, and supporting documentation.'
-        Boundary = 'The response states exactly which historical materials are unavailable. It does not claim that reconstructed inputs or newly generated logs are the original historical records.'
-        Paths = @(
-            'editor_response/00_READ_ME_FIRST.md',
-            'editor_response/01_Response_to_Editor_DRAFT.docx',
-            'editor_response/01_Response_to_Editor_DRAFT.pdf',
-            'editor_response/02_Material_Availability.csv',
-            'editor_response/04_METRIC_METHOD.md',
-            'editor_response/05_AUTHOR_CONFIRMATION_CHECKLIST.md',
-            'editor_response/06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md',
-            'editor_response/PACKAGE_VALIDATION.json',
-            'editor_response/SHA256SUMS.csv',
-            'DATA_AVAILABILITY.md',
-            'ARTIFACT_EVALUATION.md',
-            'CITATION.cff',
-            'codemeta.json',
-            'LICENSE'
-        )
     }
 )
+
+$obsoleteArchive = Join-Path $outputDirectory '05_material_availability_and_editor_response.zip'
+if (Test-Path -LiteralPath $obsoleteArchive) {
+    Remove-Item -LiteralPath $obsoleteArchive -Force
+}
 
 function Copy-PackageEntry {
     param(
@@ -235,15 +218,14 @@ https://github.com/niqundaye/Frontiers-in-Marine-Science
     $summary | Export-Csv -LiteralPath $summaryPath -NoTypeInformation -Encoding utf8
 
     $index = @"
-# Five-part reviewer supporting package
+# Four-part reviewer supporting package
 
-The reviewer material is divided into five independently verifiable ZIP archives:
+The supporting data and code are divided into four independently verifiable ZIP archives. The concise response letter is supplied separately and is not placed in a ZIP archive.
 
 1. `01_31_province_input_and_coefficient_matrix.zip`
 2. `02_official_public_source_data_and_calibration.zip`
 3. `03_new_30run_optimisation_outputs_and_metrics.zip`
 4. `04_reproducibility_code_figures_and_validation.zip`
-5. `05_material_availability_and_editor_response.zip`
 
 `PACKAGE_SUMMARY.csv` records the byte size, entry count, SHA-256 digest, and evidence boundary for every archive.
 
