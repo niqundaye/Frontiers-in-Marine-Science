@@ -92,9 +92,39 @@ def main() -> None:
     detailed = pd.read_csv(public / "moa_2024_detailed_fishery_statistics.csv")
     environment = pd.read_csv(public / "moa_fishery_environment_2024.csv")
     latest = pd.read_csv(public / "official_latest_aquatic_products_2025.csv")
+    nbs_panel = pd.read_csv(public / "nbs_2024_31_province_public_panel.csv")
+    nbs_benchmarks = pd.read_csv(public / "nbs_2024_national_benchmarks.csv").set_index(
+        "metric"
+    )
     require(len(detailed) == 99, "MOA 2024 detailed extract has 99 records", checks)
     require(len(environment) == 12, "Fishery-environment extract has 12 records", checks)
     require(len(latest) == 6, "Latest national/Zhejiang extract has 6 records", checks)
+    require(len(nbs_panel) == 31, "NBS 2024 panel has 31 province-level rows", checks)
+    require(
+        nbs_panel.province_code.nunique() == 31,
+        "NBS 2024 panel province codes are unique",
+        checks,
+    )
+    require(
+        nbs_panel.data_status.str.contains("official public data", regex=False).all(),
+        "NBS province rows disclose official-public replacement status",
+        checks,
+    )
+    require(
+        abs(
+            nbs_panel.aquatic_total_10000_t.sum()
+            - nbs_benchmarks.loc["aquatic_total", "value"]
+        )
+        <= 0.31,
+        "NBS province aquatic total reconciles within printed rounding",
+        checks,
+    )
+    require(
+        nbs_panel.freight_total_10000_tonnes.sum() + 97072
+        == nbs_benchmarks.loc["freight_total", "value"],
+        "NBS province freight plus not-classified amount reconciles",
+        checks,
+    )
     for name, frame in [
         ("MOA 2024 detailed", detailed),
         ("Fishery environment", environment),
@@ -125,6 +155,7 @@ def main() -> None:
         ".zenodo.json",
         "Dockerfile",
         "scripts/reviewer_quick_check.py",
+        "editor_response/06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md",
     ]:
         require((ROOT / filename).is_file(), f"Reviewer artifact includes {filename}", checks)
 
@@ -140,6 +171,19 @@ def main() -> None:
         "Availability statement discloses non-exact reconstruction status",
         checks,
     )
+
+    editor = ROOT / "editor_response"
+    editor_matrix = pd.read_csv(editor / "data" / "reconstructed" / "coefficient_matrix_248_rows.csv")
+    editor_runs = pd.read_csv(editor / "runs" / "new_30run_surrogate" / "run_summary.csv")
+    editor_qc = pd.read_csv(editor / "data" / "reconstructed" / "public_data_qc.csv")
+    require(len(editor_matrix) == 248, "Editor response matrix has 248 rows", checks)
+    require(
+        editor_matrix.data_status.str.contains("not historical", regex=False).all(),
+        "Editor response matrix discloses non-historical status",
+        checks,
+    )
+    require(len(editor_runs) == 120, "Editor response contains four algorithms x 30 new runs", checks)
+    require(editor_qc.result.eq("PASS").all(), "Editor response public-data QC passes", checks)
 
     print(f"{len(checks)} reproducibility checks passed")
     if args.check_only:

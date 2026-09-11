@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 
 from docx import Document
-from docx.enum.section import WD_SECTION
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
@@ -208,20 +207,20 @@ def main() -> None:
 
     doc.add_heading("1. Original 31-province coefficient/input matrix", level=1)
     add_paragraph(doc, "The contemporaneous matrix used to generate the article's reported numerical results is unavailable in the retained archive. In particular, no file contains the original province row order, the complete 31 x 4 x 2 allocation bounds, or the full province-specific production, processing, marketing, social, economic and ecological inputs.")
-    add_paragraph(doc, "Replacement supplied: `03_Reconstructed_31_Province_Inputs.xlsx` and the CSV tables in `data/reconstructed/`. The workbook exposes 31 region rows, all 248 region-sector-mode records, the 4 x 2 coefficient tables, national constraints, variable definitions, source mapping, and QC formulas. Every replacement value is labelled `calibrated reconstruction; not historical author input`.")
-    add_paragraph(doc, "The province names follow the standard 31-province NBS ordering solely to make the replacement inspectable. The article does not disclose the original mapping between r01-r31 and province names, so this mapping is an explicit reconstruction assumption.")
+    add_paragraph(doc, "Replacement supplied: `03_Reconstructed_31_Province_Inputs.xlsx`, `06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md`, and the CSV tables in `data/source/` and `data/reconstructed/`. The workbook now separates (i) direct 2024 observations transcribed for all 31 province-level regions from six official NBS yearbook tables and (ii) the processed/calibrated fields used to create all 248 region-sector-mode records. It includes the four production sectors, population, disposable income, wastewater pressure, freight, e-commerce, model coefficients, national constraints, formulas and QC checks.")
+    add_paragraph(doc, "Direct observations are labelled `official public 2024 NBS transcription; not historical author input`; transformations and assumptions are labelled `calibrated reconstruction; not historical author input`. The province names follow the standard NBS ordering to make the replacement inspectable. The article does not disclose the original mapping between r01-r31 and province names, so that mapping remains an explicit reconstruction assumption.")
 
     doc.add_heading("2. Original data files or spreadsheets used to construct the matrix", level=1)
     add_paragraph(doc, "No contemporaneous raw workbook, cleaned workbook, coefficient-construction workbook, EWM calculation file, interpolation log, moving-average calculation file, or join/harmonisation file is present in the retained archive.")
-    add_paragraph(doc, "Replacement supplied: `data/source/` contains exact transcriptions of article Tables 1-4 and later official public-source extracts from the Ministry of Agriculture and Rural Affairs, the World Bank/FAO, and the documented NBS A0407 indicator. These files support independent plausibility checks but are not claimed to be the original data files used for the reported experiment.")
-    add_paragraph(doc, "The NBS A0407 official page returned HTTP 403 during a renewed access check on 11 September 2026. No province values were copied from paywalled or unverified third-party aggregators. The official statistical-system description states that annual fishery results are published through the China Fisheries Statistical Yearbook; the underlying yearbook extraction used historically is not retained in the available archive.")
+    add_paragraph(doc, "Replacement supplied: `data/source/` contains exact transcriptions of article Tables 1-4, Ministry and World Bank/FAO extracts, and `nbs_2024_31_province_public_panel.csv`. The new panel transcribes six official China Statistical Yearbook 2025 tables for all 31 province-level regions: aquatic-product output, population, disposable income, wastewater pollutants, freight, and enterprise e-commerce. Its adjacent data dictionary retains every printed unit and direct official URL. These public files support independent plausibility checks and transparent rerunning but are not claimed to be the contemporaneous files used for the reported experiment.")
+    add_paragraph(doc, "The former NBS A0407 portal endpoint returned HTTP 403 during a renewed automated check. We therefore used directly accessible official yearbook tables instead of third-party aggregators. Table 12-15 supplies the 2024 marine/freshwater and capture/aquaculture output required for a real 31-province production backbone. The temporal calibration to the paper's 2023 total, the fresh-sales/deep-processing split, and all external proxy transformations are documented formula by formula in `06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md`.")
 
     doc.add_heading("3. Original 30-run optimisation outputs and performance metrics", level=1)
     add_paragraph(doc, "The original 30-run logs used to generate the reported figures and aggregate HV/IGD results are unavailable. No retained file contains the historical seed list, initial populations, generation-by-generation populations, objective and constraint arrays, final non-dominated fronts, HV normalisation/reference point, IGD reference front, or per-run metric values.")
     add_paragraph(doc, "Two clearly separated replacement layers are supplied:")
     add_bullet(doc, "`runs/article_figure3_calibrated/` contains 30 HV and 30 IGD values per algorithm generated deterministically from manuscript-reported distribution anchors. They reproduce the comparison plot structure only and are not recovered run measurements.")
     add_bullet(doc, "`runs/new_30run_surrogate/` contains 30 newly executed independent runs for each of IA-NSGA-III, NSGA-III, MOEA/D and NSGA-II. It includes the configuration snapshot, all generation logs, relocation events, final objectives and seven constraint residuals, all 248-dimensional decision vectors, run summaries, pooled reference front, metric definitions, and an independent HV/IGD recomputation check.")
-    add_paragraph(doc, "The new surrogate experiment uses 48 individuals and 30 generations to provide a practical, fully executable audit path. It does not reproduce the article's 200-individual, 1,000-generation historical experiment, because the missing historical province inputs and metric-reference definitions are necessary for a strict rerun.")
+    add_paragraph(doc, "The new surrogate experiment uses the official NBS 2024 province-sector pattern, reverse-calibrated to the paper's disclosed 2023 national total, plus explicitly labelled processing/marketing/social/economic/ecological proxies. It uses 48 individuals and 30 generations to provide a practical, fully executable audit path. It does not reproduce the article's 200-individual, 1,000-generation historical experiment, because the missing historical province inputs and metric-reference definitions are necessary for a strict rerun.")
     add_paragraph(doc, "The manuscript also contains an unresolved textual discrepancy: the abstract reports IGD = 0.012, whereas the Figure 2 discussion states a final IGD of 0.06. In the absence of the original logs and reference front, the retained evidence cannot determine which value reflects the historical calculation. The package preserves the 0.012 disclosed anchor used in the calibrated comparison data and does not silently choose between the conflicting statements.")
 
     doc.add_heading("4. Exact scope of unavailable files and variables", level=1)
@@ -248,8 +247,8 @@ def main() -> None:
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         set_font(p.add_run(text), size=9.5, bold=True, color=RGBColor(255, 255, 255))
     rows = [
-        ("31-province matrix", "Not found", "Reconstructed XLSX + five CSV tables"),
-        ("Source spreadsheets", "Not found", "Article transcriptions + official public extracts + source catalogue"),
+        ("31-province matrix", "Not found", "Official 31-province panel + reconstructed XLSX/CSV + derivation equations"),
+        ("Source spreadsheets", "Not found", "Six NBS tables + article/Ministry/World Bank extracts + source catalogue"),
         ("Original 30-run logs", "Not found", "Calibrated plot series + 120 newly executed surrogate runs with full logs"),
         ("Exact unavailable list", "Documented", "02_Material_Availability.csv + author confirmation checklist"),
     ]
@@ -268,12 +267,14 @@ def main() -> None:
     add_paragraph(doc, "Yours sincerely,")
     add_paragraph(doc, "Dr. Liu\nOn behalf of the authors", after=0)
 
-    doc.add_section(WD_SECTION.NEW_PAGE)
     doc.add_heading("Sources cited in this response", level=1)
     sources = [
         "National Bureau of Statistics of China, Fisheries Statistical Survey System (2024): https://www.stats.gov.cn/fw/bmdcxmsp/bmzd/202407/t20240719_1955798.html",
         "Ministry of Agriculture and Rural Affairs, 2023 National Fishery Economic Statistics Communique: https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm",
         "National Bureau of Statistics data portal, provincial aquatic-product indicator A0407: https://data.stats.gov.cn/easyquery.htm?cn=E0103&zb=A0407",
+        "National Bureau of Statistics, China Statistical Yearbook 2025 navigation: https://www.stats.gov.cn/sj/ndsj/2025/left_.htm",
+        "NBS Table 12-15, Output of Aquatic Products: https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg",
+        "NBS Tables 2-5, 6-18, 8-10, 16-13 and 16-39: https://www.stats.gov.cn/sj/ndsj/2025/html/E02-05.jpg ; https://www.stats.gov.cn/sj/ndsj/2025/html/E06-18.jpg ; https://www.stats.gov.cn/sj/ndsj/2025/html/E08-10.jpg ; https://www.stats.gov.cn/sj/ndsj/2025/html/E16-13.jpg ; https://www.stats.gov.cn/sj/ndsj/2025/html/E16-39.jpg",
         "Repository and code archive: https://github.com/niqundaye/Frontiers-in-Marine-Science",
     ]
     for source in sources:

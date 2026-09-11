@@ -74,23 +74,50 @@ def sha256(path: Path) -> str:
 def build_input_tables(target: Path) -> dict[str, list[dict[str, object]]]:
     target.mkdir(parents=True, exist_ok=True)
     problem = FisheryPPMSProblem(seed=1809036)
+    public_panel = problem.public_panel.reset_index(drop=True)
     province_rows: list[dict[str, object]] = []
     matrix_rows: list[dict[str, object]] = []
 
     for index, (region_id, code, province_en, province_zh) in enumerate(PROVINCES):
+        public = public_panel.iloc[index]
+        if public["province_code"] != code:
+            raise ValueError(
+                f"Province order mismatch at row {index + 1}: {public['province_code']} != {code}"
+            )
         province_rows.append(
             {
                 "region_id": region_id,
                 "province_code": code,
                 "province_en": province_en,
                 "province_zh": province_zh,
-                "region_share_proxy": problem.region_share[index],
-                "digital_index_proxy": problem.digital_index[index],
-                "workforce_proxy_people": problem.workforce[index],
-                "cold_capacity_proxy_tonnes": problem.cold_capacity[index],
-                "power_capacity_proxy_kw": problem.power_capacity[index],
+                "year": int(public["year"]),
+                "aquatic_total_official_10000_t": public["aquatic_total_10000_t"],
+                "marine_capture_official_10000_t": public["marine_capture_10000_t"],
+                "freshwater_capture_official_10000_t": public["freshwater_capture_10000_t"],
+                "marine_aquaculture_official_10000_t": public["marine_aquaculture_10000_t"],
+                "freshwater_aquaculture_official_10000_t": public["freshwater_aquaculture_10000_t"],
+                "population_official_10000_persons": public["population_10000_persons"],
+                "disposable_income_official_yuan": public["disposable_income_yuan"],
+                "wastewater_cod_official_tonnes": public["wastewater_cod_tonnes"],
+                "wastewater_phosphorus_official_tonnes": public["wastewater_total_phosphorus_tonnes"],
+                "freight_official_10000_tonnes": public["freight_total_10000_tonnes"],
+                "enterprises_official_units": public["enterprises_units"],
+                "ecommerce_enterprises_official_units": public["ecommerce_enterprises_units"],
+                "ecommerce_sales_official_100m_yuan": public["ecommerce_sales_100m_yuan"],
+                "ecommerce_adoption_rate_processed": problem.ecommerce_adoption_rate[index],
+                "region_share_processed": problem.region_share[index],
+                "paper_2023_calibration_factor": problem.paper_calibration_factor,
+                "digital_index_processed": problem.digital_index[index],
+                "income_multiplier_processed": problem.income_multiplier[index],
+                "social_need_multiplier_processed": problem.social_need_multiplier[index],
+                "ecological_pressure_index_processed": problem.ecological_pressure_index[index],
+                "freight_index_processed": problem.freight_index[index],
+                "workforce_processed_people": problem.workforce[index],
+                "cold_capacity_processed_tonnes": problem.cold_capacity[index],
+                "power_capacity_processed_kw": problem.power_capacity[index],
                 "mapping_note": "NBS standard province order assigned for reconstruction; original r-index order unavailable",
-                "data_status": STATUS,
+                "official_data_status": "official public 2024 NBS transcription; not historical author input",
+                "derived_data_status": STATUS,
             }
         )
         for sector_index, (sector_id, sector_en, sector_zh) in enumerate(SECTORS):
@@ -108,17 +135,28 @@ def build_input_tables(target: Path) -> dict[str, list[dict[str, object]]]:
                         "mode_id": mode_id,
                         "mode_en": mode_en,
                         "mode_zh": mode_zh,
-                        "upper_bound_proxy_tonnes": problem.ub_amount[index, sector_index, mode_index],
-                        "region_share_proxy": problem.region_share[index],
-                        "digital_index_proxy": problem.digital_index[index],
-                        "workforce_proxy_people": problem.workforce[index],
-                        "cold_capacity_proxy_tonnes": problem.cold_capacity[index],
-                        "power_capacity_proxy_kw": problem.power_capacity[index],
+                        "official_2024_sector_tonnes": problem.observed_2024_sector_tonnes[index, sector_index],
+                        "paper_calibrated_sector_tonnes": problem.calibrated_sector_tonnes[index, sector_index],
+                        "assumed_mode_share": problem.mode_share_by_sector[sector_index, mode_index],
+                        "baseline_sector_mode_processed_tonnes": problem.baseline_sector_mode_tonnes[index, sector_index, mode_index],
+                        "upper_bound_processed_tonnes": problem.ub_amount[index, sector_index, mode_index],
+                        "region_share_processed": problem.region_share[index],
+                        "digital_index_processed": problem.digital_index[index],
+                        "income_multiplier_processed": problem.income_multiplier[index],
+                        "social_need_multiplier_processed": problem.social_need_multiplier[index],
+                        "ecological_pressure_index_processed": problem.ecological_pressure_index[index],
+                        "ecological_quality_multiplier_processed": problem.ecological_quality_multiplier[index],
+                        "freight_index_processed": problem.freight_index[index],
+                        "logistics_cost_multiplier_processed": problem.logistics_cost_multiplier[index],
+                        "workforce_processed_people": problem.workforce[index],
+                        "cold_capacity_processed_tonnes": problem.cold_capacity[index],
+                        "power_capacity_processed_kw": problem.power_capacity[index],
                         "income_coefficient_proxy": problem.income_coeff[sector_index, mode_index],
                         "marginal_value_coefficient_proxy": problem.value_coeff[sector_index, mode_index],
                         "supply_chain_cost_coefficient_proxy": problem.cost_coeff[sector_index, mode_index],
                         "ecological_weight_proxy": problem.eco_coeff[sector_index, mode_index],
                         "fleet_power_coefficient_proxy": problem.power_coeff[sector_index],
+                        "official_source": "NBS China Statistical Yearbook 2025, Table 12-15",
                         "data_status": STATUS,
                     }
                 )
@@ -134,6 +172,7 @@ def build_input_tables(target: Path) -> dict[str, list[dict[str, object]]]:
                     "mode_id": mode_id,
                     "mode_en": mode_en,
                     "mode_zh": mode_zh,
+                    "assumed_mode_share": problem.mode_share_by_sector[sector_index, mode_index],
                     "income_coefficient_proxy": problem.income_coeff[sector_index, mode_index],
                     "marginal_value_coefficient_proxy": problem.value_coeff[sector_index, mode_index],
                     "supply_chain_cost_coefficient_proxy": problem.cost_coeff[sector_index, mode_index],
@@ -145,6 +184,8 @@ def build_input_tables(target: Path) -> dict[str, list[dict[str, object]]]:
 
     national_rows = [
         {"parameter": "baseline_total", "value": 71_161_716.0, "unit": "tonnes", "role": "2023 production anchor", "source": "Paper Table 3", "data_status": "article transcription"},
+        {"parameter": "nbs_2024_31province_sector_sum", "value": problem.observed_2024_sector_tonnes.sum(), "unit": "tonnes", "role": "official public regional-sector backbone", "source": "NBS 2025 Table 12-15", "data_status": "official public 2024 NBS transcription; not historical author input"},
+        {"parameter": "paper_calibration_factor", "value": problem.paper_calibration_factor, "unit": "ratio", "role": "scale 2024 public sector pattern to the paper's 2023 national production anchor", "source": "71,161,716 / sum of four NBS provincial sectors", "data_status": STATUS},
         {"parameter": "catch_limit", "value": problem.catch_limit, "unit": "tonnes", "role": "national capture constraint in surrogate", "source": "Model proxy aligned to 2023 national total capture", "data_status": STATUS},
         {"parameter": "total_limit", "value": problem.total_limit, "unit": "tonnes", "role": "110% of production anchor", "source": "deterministic model rule", "data_status": STATUS},
         {"parameter": "processing_limit", "value": problem.processing_limit, "unit": "tonnes", "role": "37% of production anchor", "source": "deterministic model rule", "data_status": STATUS},
@@ -157,12 +198,20 @@ def build_input_tables(target: Path) -> dict[str, list[dict[str, object]]]:
     ]
 
     dictionary_rows = [
-        {"field": "region_share_proxy", "meaning": "Deterministic regional share used to distribute the national production anchor", "unit": "ratio", "original_available": "no", "construction": "Seeded proxy generated in FisheryPPMSProblem(seed=1809036)"},
-        {"field": "digital_index_proxy", "meaning": "Proxy for the regional EWM digitalisation index described in the manuscript", "unit": "0-1 score", "original_available": "no", "construction": "Deterministic spatial gradient plus seeded perturbation; not EWM observations"},
-        {"field": "workforce_proxy_people", "meaning": "Regional fishery workforce denominator", "unit": "people", "original_available": "no", "construction": "National proxy distributed by region share with seeded perturbation"},
-        {"field": "cold_capacity_proxy_tonnes", "meaning": "Regional processing/cold-chain capacity", "unit": "tonnes", "original_available": "no", "construction": "National production anchor multiplied by region share and proxy cold-chain intensity"},
-        {"field": "power_capacity_proxy_kw", "meaning": "Regional fleet-power capacity", "unit": "kW", "original_available": "no", "construction": "2023 national power anchor distributed by region share with seeded perturbation"},
-        {"field": "upper_bound_proxy_tonnes", "meaning": "Maximum decoded allocation for one region-sector-mode decision variable", "unit": "tonnes", "original_available": "no", "construction": "baseline_total x 1.20 x region share x sector share x mode share"},
+        {"field": "*_official_*", "meaning": "Values transcribed from the six 2024 NBS province tables", "unit": "as named", "original_available": "public replacement only", "construction": "Direct transcription; no interpolation; official URLs retained in the source data dictionary"},
+        {"field": "official_2024_sector_tonnes", "meaning": "Province-sector output before paper calibration", "unit": "tonnes", "original_available": "public replacement only", "construction": "NBS Table 12-15 printed value x 10,000"},
+        {"field": "paper_calibrated_sector_tonnes", "meaning": "Official 2024 province-sector pattern scaled to the paper's 2023 total", "unit": "tonnes", "original_available": "no", "construction": "official_2024_sector_tonnes x 71,161,716 / sum(all official province-sector tonnes)"},
+        {"field": "assumed_mode_share", "meaning": "Sector-specific split between fresh sales and deep processing", "unit": "ratio", "original_available": "no", "construction": "Declared assumptions: capture 62/38 and 67/33; aquaculture 74/26 and 78/22"},
+        {"field": "region_share_processed", "meaning": "Regional share of the four official aquatic-product sectors", "unit": "ratio", "original_available": "no", "construction": "Calibrated province total divided by 71,161,716; sums to one"},
+        {"field": "digital_index_processed", "meaning": "External proxy for the unreleased regional EWM fishery digitalisation index", "unit": "0-1 score", "original_available": "no", "construction": "0.25 + 0.70 x [0.60 minmax(e-commerce adoption) + 0.40 minmax(log(1+sales/enterprise))]"},
+        {"field": "income_multiplier_processed", "meaning": "Regional economic-value multiplier", "unit": "ratio", "original_available": "no", "construction": "2024 provincial disposable income / 2024 national average; clipped to 0.65-1.45"},
+        {"field": "social_need_multiplier_processed", "meaning": "Inverse-income social-need adjustment", "unit": "ratio", "original_available": "no", "construction": "2024 national disposable-income average / province income; clipped to 0.65-1.45"},
+        {"field": "ecological_pressure_index_processed", "meaning": "External wastewater-pressure proxy; not a fishery-water-quality measure", "unit": "0-1 score", "original_available": "no", "construction": "minmax(log(1 + (COD + 20 x total phosphorus) / population))"},
+        {"field": "freight_index_processed", "meaning": "External logistics-capacity proxy", "unit": "0-1 score", "original_available": "no", "construction": "minmax(log(1 + regional freight tonnage))"},
+        {"field": "workforce_processed_people", "meaning": "Regional fishery workforce denominator", "unit": "people", "original_available": "no", "construction": "11,762,300 distributed with 75% production share and 25% population share"},
+        {"field": "cold_capacity_processed_tonnes", "meaning": "Regional processing/cold-chain capacity", "unit": "tonnes", "original_available": "no", "construction": "Calibrated province production x (0.18 + 0.22 x freight index)"},
+        {"field": "power_capacity_processed_kw", "meaning": "Regional fleet-power capacity", "unit": "kW", "original_available": "no", "construction": "18,940,154 distributed by calibrated capture output plus 5% of total output"},
+        {"field": "upper_bound_processed_tonnes", "meaning": "Maximum decoded allocation for one region-sector-mode decision variable", "unit": "tonnes", "original_available": "no", "construction": "1.20 x calibrated province-sector output x assumed utilisation-mode share"},
         {"field": "income_coefficient_proxy", "meaning": "Unit social-income coefficient", "unit": "normalized coefficient", "original_available": "no", "construction": "Explicit 4x2 surrogate coefficient table"},
         {"field": "marginal_value_coefficient_proxy", "meaning": "Processing/marketing marginal output value", "unit": "normalized coefficient", "original_available": "no", "construction": "Explicit 4x2 surrogate coefficient table"},
         {"field": "supply_chain_cost_coefficient_proxy", "meaning": "Processing and cold-chain/logistics cost", "unit": "normalized coefficient", "original_available": "no", "construction": "Explicit 4x2 surrogate coefficient table"},
@@ -170,12 +219,59 @@ def build_input_tables(target: Path) -> dict[str, list[dict[str, object]]]:
         {"field": "fleet_power_coefficient_proxy", "meaning": "Sector-specific fleet-power intensity", "unit": "relative coefficient", "original_available": "no", "construction": "Explicit 4-element surrogate coefficient vector"},
     ]
 
+    derivation_rows = [
+        {"step": 1, "output": "official_2024_sector_tonnes", "formula": "NBS Table 12-15 value x 10,000", "inputs": "six official NBS province tables", "evidence_class": "official public data", "limitation": "2024 replacement evidence; not the historical model workbook"},
+        {"step": 2, "output": "paper_calibrated_sector_tonnes", "formula": "official sector tonnes x 71,161,716 / official 31-province sector sum", "inputs": "NBS 2024 sector pattern + paper Table 3 total", "evidence_class": "processed/calibrated", "limitation": "Assumes the 2024 spatial-sector pattern is an acceptable proxy for 2023"},
+        {"step": 3, "output": "baseline_sector_mode_processed_tonnes", "formula": "calibrated sector tonnes x declared fresh/deep mode share", "inputs": "step 2 + four stated mode splits", "evidence_class": "processed/calibrated", "limitation": "Province-by-mode historical data are unavailable"},
+        {"step": 4, "output": "upper_bound_processed_tonnes", "formula": "1.20 x baseline sector-mode tonnes", "inputs": "step 3", "evidence_class": "processed/calibrated", "limitation": "The 20% headroom is a public-surrogate modelling choice"},
+        {"step": 5, "output": "digital_index_processed", "formula": "0.25 + 0.70 x weighted min-max e-commerce composite", "inputs": "NBS enterprise counts and e-commerce sales", "evidence_class": "processed proxy", "limitation": "External enterprise proxy; not the paper's unreleased fishery EWM index"},
+        {"step": 6, "output": "economic/social multipliers", "formula": "income / national average and its inverse; clipped", "inputs": "NBS per-capita disposable income", "evidence_class": "processed proxy", "limitation": "Household income is not a fishery-specific wage series"},
+        {"step": 7, "output": "ecological_pressure_index_processed", "formula": "min-max log of (COD + 20 x phosphorus) per population", "inputs": "NBS preliminary wastewater and population data", "evidence_class": "processed proxy", "limitation": "General wastewater pressure is not fishery habitat condition"},
+        {"step": 8, "output": "freight/cold-chain fields", "formula": "log-minmax freight; production x (0.18 + 0.22 x freight index)", "inputs": "NBS freight + calibrated production", "evidence_class": "processed proxy", "limitation": "Freight is economy-wide and cold-chain capacity remains inferred"},
+        {"step": 9, "output": "workforce/power fields", "formula": "national anchors distributed by disclosed weights", "inputs": "paper/MOA anchors + public production and population", "evidence_class": "processed proxy", "limitation": "No original province allocation file was retained"},
+    ]
+
+    public_qc_specs = [
+        ("aquatic_total", "aquatic_total_10000_t", 7357.6, 0.31, "rounding"),
+        ("marine_total", "marine_total_10000_t", 3708.9, 0.31, "rounding"),
+        ("marine_capture", "marine_capture_10000_t", 1181.2, 0.31, "rounding"),
+        ("marine_aquaculture", "marine_aquaculture_10000_t", 2527.6, 0.31, "rounding"),
+        ("freshwater_total", "freshwater_total_10000_t", 3648.7, 0.31, "rounding"),
+        ("freshwater_capture", "freshwater_capture_10000_t", 116.3, 0.31, "rounding"),
+        ("freshwater_aquaculture", "freshwater_aquaculture_10000_t", 3532.4, 0.31, "rounding"),
+        ("population", "population_10000_persons", 140828.0, 200.0, "national includes 2 million military personnel excluded from province rows"),
+        ("wastewater_cod", "wastewater_cod_tonnes", 27998827.0, 1.0, "printed whole-number rounding"),
+        ("wastewater_total_phosphorus", "wastewater_total_phosphorus_tonnes", 390481.0, 3.0, "printed whole-number rounding"),
+        ("freight_total", "freight_total_10000_tonnes", 5783625.0, 97072.0, "national includes 97,072 not classified by region"),
+        ("enterprises", "enterprises_units", 1605346.0, 0.0, "exact reconciliation"),
+        ("ecommerce_enterprises", "ecommerce_enterprises_units", 205026.0, 0.0, "exact reconciliation"),
+        ("ecommerce_sales", "ecommerce_sales_100m_yuan", 386544.0, 0.21, "one-decimal rounding"),
+    ]
+    public_qc_rows = []
+    for metric, column, national, tolerance, explanation in public_qc_specs:
+        province_sum = float(public_panel[column].sum())
+        difference = province_sum - national
+        public_qc_rows.append(
+            {
+                "metric": metric,
+                "province_sum": province_sum,
+                "national_printed_value": national,
+                "difference": difference,
+                "allowed_absolute_difference": tolerance,
+                "result": "PASS" if abs(abs(difference) - tolerance) < 1e-9 or abs(difference) <= tolerance + 1e-9 else "FAIL",
+                "difference_explanation": explanation,
+            }
+        )
+
     frames = {
+        "official_2024_panel": public_panel,
+        "public_data_qc": pd.DataFrame(public_qc_rows),
         "province_inputs": pd.DataFrame(province_rows),
         "coefficient_matrix_248_rows": pd.DataFrame(matrix_rows),
         "sector_mode_coefficients": pd.DataFrame(sector_rows),
         "national_constraints": pd.DataFrame(national_rows),
         "variable_dictionary": pd.DataFrame(dictionary_rows),
+        "derivation_rules": pd.DataFrame(derivation_rows),
     }
     for name, frame in frames.items():
         frame.to_csv(target / f"{name}.csv", index=False, encoding="utf-8-sig")
@@ -245,6 +341,9 @@ def copy_sources(package_root: Path) -> None:
         ROOT / "data" / "public" / "moa_2024_detailed_fishery_statistics.csv",
         ROOT / "data" / "public" / "moa_fishery_environment_2024.csv",
         ROOT / "data" / "public" / "official_latest_aquatic_products_2025.csv",
+        ROOT / "data" / "public" / "nbs_2024_31_province_public_panel.csv",
+        ROOT / "data" / "public" / "nbs_2024_31_province_public_panel_dictionary.csv",
+        ROOT / "data" / "public" / "nbs_2024_national_benchmarks.csv",
         ROOT / "data" / "public" / "world_bank_fao_china_fisheries_2014_2023.csv",
         ROOT / "data" / "verified" / "official_2023_summary.csv",
     ]
@@ -271,7 +370,7 @@ def build_payload(package_root: Path, tables: dict[str, list[dict[str, object]]]
             "prepared_on": "2026-09-11",
             "paper_doi": "10.3389/fmars.2026.1809036",
             "package_disclosure": "Replacement evidence only; no historical original matrix or run log is represented as recovered.",
-            "nbs_a0407_check": "Official page returned HTTP 403 on 2026-09-11; no values copied from third-party aggregators.",
+            "nbs_public_panel": "Six official NBS China Statistical Yearbook 2025 tables were transcribed for all 31 province-level regions; production is observed public data and model-specific coefficients remain processed/calibrated.",
         },
     }
     (package_root / "workbook_payload.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

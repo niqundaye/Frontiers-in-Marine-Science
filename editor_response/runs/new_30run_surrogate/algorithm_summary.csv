@@ -1,5 +1,5 @@
 algorithm,runs,hypervolume_mean,hypervolume_sd,igd_mean,igd_sd,feasible_fraction_mean,elapsed_seconds_mean,data_status
-IA-NSGA-III,30,0.5357758268070738,0.014067891555933555,0.02304045719175185,0.007132899894445942,1.0,0.1231782133312663,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs
-MOEA/D,30,0.21818950382638067,0.016303751468943136,0.353626055731651,0.026283086919776794,0.5666666666666667,0.5933999433366505,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs
-NSGA-II,30,0.3753741854915506,0.016821545370789247,0.16420237052846468,0.01694788268510221,1.0,0.10079067000284946,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs
-NSGA-III,30,0.3557891986087014,0.01431835979423721,0.18217012423232254,0.01562113566432734,1.0,0.11074084666809843,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs
+IA-NSGA-III,30,0.6080937982779582,0.016185714335423113,0.03165222067658474,0.006314771308288664,1.0,0.13574969332742814,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs
+MOEA/D,30,0.2904694900130739,0.027784002846290932,0.281864450235651,0.03249522836509027,1.0,0.6438549400035602,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs
+NSGA-II,30,0.49035178340603364,0.018153122988275115,0.11789182765637612,0.016056977114749963,1.0,0.10495975666757053,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs
+NSGA-III,30,0.4895118769650059,0.013487552506160641,0.10541426612093148,0.009786953970208574,1.0,0.12028632000825988,经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs

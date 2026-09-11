@@ -1,10 +1,18 @@
 ﻿field,meaning,unit,original_available,construction
-region_share_proxy,Deterministic regional share used to distribute the national production anchor,ratio,no,Seeded proxy generated in FisheryPPMSProblem(seed=1809036)
-digital_index_proxy,Proxy for the regional EWM digitalisation index described in the manuscript,0-1 score,no,Deterministic spatial gradient plus seeded perturbation; not EWM observations
-workforce_proxy_people,Regional fishery workforce denominator,people,no,National proxy distributed by region share with seeded perturbation
-cold_capacity_proxy_tonnes,Regional processing/cold-chain capacity,tonnes,no,National production anchor multiplied by region share and proxy cold-chain intensity
-power_capacity_proxy_kw,Regional fleet-power capacity,kW,no,2023 national power anchor distributed by region share with seeded perturbation
-upper_bound_proxy_tonnes,Maximum decoded allocation for one region-sector-mode decision variable,tonnes,no,baseline_total x 1.20 x region share x sector share x mode share
+*_official_*,Values transcribed from the six 2024 NBS province tables,as named,public replacement only,Direct transcription; no interpolation; official URLs retained in the source data dictionary
+official_2024_sector_tonnes,Province-sector output before paper calibration,tonnes,public replacement only,"NBS Table 12-15 printed value x 10,000"
+paper_calibrated_sector_tonnes,Official 2024 province-sector pattern scaled to the paper's 2023 total,tonnes,no,"official_2024_sector_tonnes x 71,161,716 / sum(all official province-sector tonnes)"
+assumed_mode_share,Sector-specific split between fresh sales and deep processing,ratio,no,Declared assumptions: capture 62/38 and 67/33; aquaculture 74/26 and 78/22
+region_share_processed,Regional share of the four official aquatic-product sectors,ratio,no,"Calibrated province total divided by 71,161,716; sums to one"
+digital_index_processed,External proxy for the unreleased regional EWM fishery digitalisation index,0-1 score,no,0.25 + 0.70 x [0.60 minmax(e-commerce adoption) + 0.40 minmax(log(1+sales/enterprise))]
+income_multiplier_processed,Regional economic-value multiplier,ratio,no,2024 provincial disposable income / 2024 national average; clipped to 0.65-1.45
+social_need_multiplier_processed,Inverse-income social-need adjustment,ratio,no,2024 national disposable-income average / province income; clipped to 0.65-1.45
+ecological_pressure_index_processed,External wastewater-pressure proxy; not a fishery-water-quality measure,0-1 score,no,minmax(log(1 + (COD + 20 x total phosphorus) / population))
+freight_index_processed,External logistics-capacity proxy,0-1 score,no,minmax(log(1 + regional freight tonnage))
+workforce_processed_people,Regional fishery workforce denominator,people,no,"11,762,300 distributed with 75% production share and 25% population share"
+cold_capacity_processed_tonnes,Regional processing/cold-chain capacity,tonnes,no,Calibrated province production x (0.18 + 0.22 x freight index)
+power_capacity_processed_kw,Regional fleet-power capacity,kW,no,"18,940,154 distributed by calibrated capture output plus 5% of total output"
+upper_bound_processed_tonnes,Maximum decoded allocation for one region-sector-mode decision variable,tonnes,no,1.20 x calibrated province-sector output x assumed utilisation-mode share
 income_coefficient_proxy,Unit social-income coefficient,normalized coefficient,no,Explicit 4x2 surrogate coefficient table
 marginal_value_coefficient_proxy,Processing/marketing marginal output value,normalized coefficient,no,Explicit 4x2 surrogate coefficient table
 supply_chain_cost_coefficient_proxy,Processing and cold-chain/logistics cost,normalized coefficient,no,Explicit 4x2 surrogate coefficient table

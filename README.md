@@ -34,8 +34,9 @@ editorial request concerning the missing 31-province input matrix, underlying
 workbooks and original 30-run records. Start with
 `editor_response/00_READ_ME_FIRST.md` and the draft response letter.
 
-The package contains a 31-row/248-variable calibrated reconstruction, an exact
-availability inventory, official-source extracts, a clearly separated
+The package contains a six-table official NBS 2024 panel for all 31 provinces, a
+31-row/248-variable reverse-calibrated reconstruction, an exact availability
+inventory, field-level derivation rules, a clearly separated
 article-figure calibration series, and 30 newly executed surrogate runs for each
 of four algorithms (120 runs total) with generation logs, final populations,
 decision vectors and independently recomputed HV/IGD values. These are labelled
@@ -78,7 +79,7 @@ its dimensions and prints a JSON report ending in `"status": "pass"`.
 | Tables 1–4 | `data/paper/`, `implementations/table_*` | Exact transcription and automated validation |
 | Figures 1–10 | `data/processed/manuscript_figures/`, `results/figures/` | Direct DOCX extraction with panel mapping and SHA-256 |
 | Figure 2–10 plotting values | `results/data/`, `implementations/figure_*` | Processed reconstruction from disclosed curves and anchors |
-| 248-variable PPMS model | `src/fishery_repro/model.py` | Executable structural reproduction |
+| 248-variable PPMS model | `src/fishery_repro/model.py` | Executable structural reproduction anchored to official 2024 province-sector outputs |
 | IA-NSGA-III, NSGA-III and NSGA-II runs | `src/fishery_repro/experiment.py` | Fixed seeds, explicit operators, per-generation logs and final solutions |
 | National public-data checks | `data/public/`, `src/fishery_repro/public_data.py` | Deterministic extraction with units, URLs, dates and source hashes |
 | Authors’ private inputs and original logs | Not published | Explicitly unavailable; not imputed as author data |
@@ -110,6 +111,7 @@ protocol declaration, not evidence that unpublished author inputs were recovered
 - 99 detailed 2024 Ministry fishery records;
 - 12 official 2024 fishery-environment records;
 - 6 latest 2025 national/Zhejiang aquatic-product records;
+- 31-province official 2024 production/social/economic/ecological/logistics/digital observations with national reconciliation;
 - package validation report and whole-artifact SHA-256 manifest.
 
 ## Repository structure

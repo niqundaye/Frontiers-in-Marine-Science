@@ -20,7 +20,8 @@ Nothing in this package is represented as a recovered historical original.
 1. `01_Response_to_Editor_DRAFT.docx` and PDF: a point-by-point response.
 2. `02_Material_Availability.csv`: exact inventory of unavailable materials.
 3. `03_Reconstructed_31_Province_Inputs.xlsx`: an auditable workbook containing
-   the 31-region proxy inputs, the complete 248-row coefficient matrix, model
+   six official NBS 2024 tables transcribed for all 31 province-level regions,
+   the complete 248-row processed coefficient matrix, derivation rules, model
    constants, source mapping, and QC checks.
 4. `data/reconstructed/`: machine-readable CSV exports of the workbook tables.
 5. `data/source/`: article-table transcriptions and public-source extracts used
@@ -35,6 +36,8 @@ Nothing in this package is represented as a recovered historical original.
 8. `code/`: the exact scripts/configuration used to create the replacement
    materials.
 9. `SHA256SUMS.csv`: byte-level inventory of every packaged file.
+10. `06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md`: field-level sources,
+    equations, assumptions, limitations and the mapping to the editor's requests.
 
 ## Rebuild commands
 
@@ -55,7 +58,7 @@ previews of every workbook sheet are also required for visual quality review.
 
 ## Interpretation rule
 
-The labels `historical original`, `article transcription`, `public source`,
+The labels `historical original`, `article transcription`, `official public data`,
 `calibrated reconstruction`, and `new surrogate run` are not interchangeable.
 Only a contemporaneous file demonstrably used for the published results may be
 called an original. The replacement materials allow technical inspection, but

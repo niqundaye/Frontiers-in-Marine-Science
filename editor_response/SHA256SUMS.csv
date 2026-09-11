@@ -1,54 +1,61 @@
-﻿path,bytes,sha256,manifest_note
-00_READ_ME_FIRST.md,3143,5e189513c973ddf73f3e7b03923f362f2690acb0f0808c6df47e45c131411c2e,SHA256SUMS.csv intentionally excludes its own self-hash
-01_Response_to_Editor_DRAFT.docx,42310,4c7a3759b146d1dc4af940eb27fa302388331a44b1ab3b3188b967062fea946c,SHA256SUMS.csv intentionally excludes its own self-hash
-01_Response_to_Editor_DRAFT.pdf,300819,6d59a403ceb34d35d76869acbe920e6232bbe7431e4bfe7d25e8ba636530c96c,SHA256SUMS.csv intentionally excludes its own self-hash
-02_Material_Availability.csv,4692,fb721f1ea4cf6fce3a19fd1d788403759173fe4da40d66144cf869b5c0030a56,SHA256SUMS.csv intentionally excludes its own self-hash
-03_Reconstructed_31_Province_Inputs.xlsx,56131,f65a01ca7223506c9e29c5d97138e0b01a5f7cf5c8bb2d9a871797264dd55e01,SHA256SUMS.csv intentionally excludes its own self-hash
-03_Reconstructed_31_Province_Inputs.xlsx.inspect.ndjson,2656044,cd50cd736cbbd01ae0c1bc829c0a496121e9f19d0b998831a69b964845adeb95,SHA256SUMS.csv intentionally excludes its own self-hash
-04_METRIC_METHOD.md,1745,9af8c232aa20b68073dfeab2ea1802d9fcfb683cfe01a0d1a22ee5ca32919004,SHA256SUMS.csv intentionally excludes its own self-hash
-05_AUTHOR_CONFIRMATION_CHECKLIST.md,1325,72c4b29aa7e7cc0f4bc2a22fc3869a9e9562afc589a48cd49ac6b17c0ef95c2e,SHA256SUMS.csv intentionally excludes its own self-hash
-PACKAGE_VALIDATION.json,1088,87c2eea0bebd975e4f9a9253571796592572219910e95f9ed35d5fec9c872967,SHA256SUMS.csv intentionally excludes its own self-hash
-code/LICENSE,1093,7d5885f736c1a0708cdce462e211e3a62af8a7d4332cda312f441ca3c5dc0ee0,SHA256SUMS.csv intentionally excludes its own self-hash
-code/benchmark.py,5547,bc2e547412cf517c42b4a8904da3f4fcb16ec7340fd38f20077ce18cbe3579a3,SHA256SUMS.csv intentionally excludes its own self-hash
-code/build_editor_response_data.py,18981,1067ffa971dd007d726ea6324685fbfa9173303dd5bedfa900af04805a301def,SHA256SUMS.csv intentionally excludes its own self-hash
-code/build_editor_response_letter.py,17351,45454a9054f23b09b5e81191b08652104fedfb6ef520f6140e14577416d3df8f,SHA256SUMS.csv intentionally excludes its own self-hash
-code/build_editor_response_workbook.mjs,10670,1a0232ce99c69bd5820d16950cfcc3ec5f8953c9cf2a3b0d69d21f494e6e3034,SHA256SUMS.csv intentionally excludes its own self-hash
-code/convert_docx_with_word.ps1,1029,26133ca771e01cae02dbca404255d844c5a489162670376ea3120135b049b5f9,SHA256SUMS.csv intentionally excludes its own self-hash
-code/editor_response_30run.yaml,896,f1f427700b24b24b5adeff60941d0aec41cc29738b2c648cca4ba5e6a29f7c00,SHA256SUMS.csv intentionally excludes its own self-hash
-code/environment.yml,291,c196ec0def003607d295548c05af8cf4e748ea60bc7f895b52c845defbc196a4,SHA256SUMS.csv intentionally excludes its own self-hash
-code/experiment.py,18663,f407198e0d741773aaa2fd02fdabfa8d390c0c8999b1cc7ac19773ac9733e0bf,SHA256SUMS.csv intentionally excludes its own self-hash
-code/model.py,8915,b3a9c6a93341f30b124404a60abef0050ff578fc8b5bff193e021638257aef76,SHA256SUMS.csv intentionally excludes its own self-hash
-code/package_editor_response.py,6027,39340e75d418c2be1201f3138eec4d3f1a4235d7763ed7866958c4ee2b60e722,SHA256SUMS.csv intentionally excludes its own self-hash
-code/pyproject.toml,736,93ca0722f102f8fca84b7c36e8ea55c21499a9e53c92b693e85f40977825fccc,SHA256SUMS.csv intentionally excludes its own self-hash
-code/requirements-dev.txt,35,d4b8739e40a82c0f18ecf4dd632361b5b7023e1abaec5e60091f2ffba9d5ff0b,SHA256SUMS.csv intentionally excludes its own self-hash
-code/requirements.txt,104,ad8e842a3e1579e54862a9d4bc3c2eee63dc12d767967b2600b267aac41e0116,SHA256SUMS.csv intentionally excludes its own self-hash
-data/reconstructed/coefficient_matrix_248_rows.csv,71905,61a5c79033ad9c21fef735d6ab1662eb510e3ec33ab63e953689750245261f56,SHA256SUMS.csv intentionally excludes its own self-hash
-data/reconstructed/national_constraints.csv,1510,21b8c79ddfa5aebe9f862c15e6c2ed6a5858246f41e409bcdb30c59dbfe0834c,SHA256SUMS.csv intentionally excludes its own self-hash
-data/reconstructed/province_inputs.csv,8476,8324caad6854276a555d3e9a4d5e7c2d3464b763f684200d7ed692a3403ac096,SHA256SUMS.csv intentionally excludes its own self-hash
-data/reconstructed/sector_mode_coefficients.csv,1327,37f470a1d26dd079656fbee8c3f8ac1c3d5af99208605af6916454079e9d8689,SHA256SUMS.csv intentionally excludes its own self-hash
-data/reconstructed/variable_dictionary.csv,1714,3d918ef1f7da92c5d931f799759019cd71c9b40ff5b17309249e624c3472a262,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/moa_2024_detailed_fishery_statistics.csv,39232,78caca369703f6f75efcce9248e7d94c728a8f80c9bed36a2f5e6b5e271ab5cb,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/moa_fishery_environment_2024.csv,5420,2e09b5582ba8ae899a2423a5e85ba7058613eda7f33c81254e0249ba42a692d9,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/moa_national_fishery_statistics.csv,17591,d9d9a71b09cc9ce42932e38cd6f5e569e8e710aed9176b24d073b2b8ef11fca9,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/official_2023_summary.csv,1591,87e04e7cdab286564718e59642c27ad0907eb280f3c779a1e23f37622f920008,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/official_latest_aquatic_products_2025.csv,2798,ef8d2df48a72c1fd6cd5ac529259e37c321d2c24fdd9af996d22529d42074c16,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/source_catalog.csv,8570,2f84ead6ba3daa9000308e5a4aea9c1f598367f17398d29c0c4a420bdb1fa03b,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/table_1_decision_indices.csv,260,f15e35459d5067b795bb899138cc09bdb56f965c26137abfcee0761c71bd7916,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/table_2_economic_welfare.csv,944,80b399acc934a4469cc9b09206b3fd05b25bc1eb24b26ceab711d7a60a2860df,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/table_3_capacity_constraints.csv,923,56e419f4e6978bd34137d0014732e004da3a4b36816bfcbcbd22114c1ea56860,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/table_4_algorithm_parameters.csv,832,6a79e99628c9c12b90cf4e3796d7999ae719f5b23f0477bad486a561d53486c9,SHA256SUMS.csv intentionally excludes its own self-hash
-data/source/world_bank_fao_china_fisheries_2014_2023.csv,10161,015b477879c78ea1c70fd07bbacac79349d2b9bdc9de2ed2c06e0d16185b4b75,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/article_figure3_calibrated/figure_03_calibrated_30run_metrics.csv,45196,44258550c7f27d45872fa37494afb6f975d1a4a535199d63c5353345518f26b6,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/article_figure3_calibrated/generation_code_calibrated.py,9627,96d0e3c23775427176b02f49cf5adea9dc31a9a14c722988c0328699cdfd1852,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/algorithm_summary.csv,997,3cfe2000c3edf537ec6074ce03d14c46544880872f2523e7f471f029a3b5b7bb,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/config_snapshot.yaml,896,f1f427700b24b24b5adeff60941d0aec41cc29738b2c648cca4ba5e6a29f7c00,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/final_population_decision_vectors.csv,27670719,93c4c0d0664f23ef2db73059c9c634705391df76792e962358791d136f524ee2,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/final_population_objectives_constraints.csv,2150887,36dc5f0d6321ec57d4317e96a412c4b2344e1c18b857ba6cbd38dd9db8bdb3a3,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/generation_log.csv,721740,d267f0d92c32a07d09a6fa55c424fc43268cbc1c4b944da03ae3ecb25060890a,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/metric_definition.json,768,44b0f48e455e48594c0036026d900363a0a71333b4af0b09bccf617cdcd568fa,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/metric_recomputation_check.csv,25417,a32ac8af9af47e2efc8e85b4ac021a5feb88d86308e4225ffffbfb7eb362abcb,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/pooled_reference_front.csv,6136,cab30bed706ec3669c0c38f1d8d8b7bf686cdbe85ee31565aa0cfb150acf8d2e,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/reference_relocation_log.csv,4311,6c6f6e19dff509d58a1821f325ac2f12eeb4c0ccf9256eadc92f0f0cdd92ac14,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/run_metadata.json,2623,4bb12884870906204522bdab967e3d2002c3d3556d608e20bad31333939fbf85,SHA256SUMS.csv intentionally excludes its own self-hash
-runs/new_30run_surrogate/run_summary.csv,24923,faf3810b899a5abc498df5d95a71201d3de5499de5986277c40176e33e7576e2,SHA256SUMS.csv intentionally excludes its own self-hash
-workbook_payload.json,294303,66b54c5d4f5b8323ee9f765582fbff05bd6a8cdf728e52476865841ec4b01266,SHA256SUMS.csv intentionally excludes its own self-hash
+﻿path,bytes,sha256,hash_mode,manifest_note
+00_READ_ME_FIRST.md,3388,6fd74875c39fddca8c381bee4609cc60065a29c58b7a875b8fa92e01da8cc87c,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+01_Response_to_Editor_DRAFT.docx,42841,6c14037de1f6a187c51886dca8c4625ddf9e2ec3f55abc080c104c2519ac3b42,binary,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+01_Response_to_Editor_DRAFT.pdf,303725,a577dadd9bcda16518a236261a9bbf0a3295150c3e53be6e37d5527a90594d2b,binary,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+02_Material_Availability.csv,5150,bb8c0e8368b24c6fa951300d8ae521ee4db7b8bfd948a0407ee4474f9f859246,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+03_Reconstructed_31_Province_Inputs.xlsx,88981,486fd2af74885e2af1be919efa0b5c7d1239478d7f273344152e403214a44f2c,binary,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+03_Reconstructed_31_Province_Inputs.xlsx.inspect.ndjson,4441688,06faf029b34254969de10ef0cc8c6ecb722f40152269f08d3f151bbcbfce5a3c,binary,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+04_METRIC_METHOD.md,1745,9af8c232aa20b68073dfeab2ea1802d9fcfb683cfe01a0d1a22ee5ca32919004,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+05_AUTHOR_CONFIRMATION_CHECKLIST.md,1325,72c4b29aa7e7cc0f4bc2a22fc3869a9e9562afc589a48cd49ac6b17c0ef95c2e,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md,7277,dbcfc84d55a094f4fddb88dcb1b7d314b729d6edb3e02e21f6bd898774c2c709,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+PACKAGE_VALIDATION.json,1312,0c61d73dbb8e20cd0e0595ff2c5da27e865f760866a130718b2c42dc0b1054a7,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/LICENSE,1093,7d5885f736c1a0708cdce462e211e3a62af8a7d4332cda312f441ca3c5dc0ee0,binary,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/benchmark.py,5547,bc2e547412cf517c42b4a8904da3f4fcb16ec7340fd38f20077ce18cbe3579a3,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/build_editor_response_data.py,30331,e4d9c4756a10d46996738be5c75682da71d1c77bcc23e84701c3e235cead6da1,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/build_editor_response_letter.py,18885,e2478c3ff224c27d304882a87eb33e6b2d53b17e60703605cc50a7535f7de11d,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/build_editor_response_workbook.mjs,12351,1e1c43c2eb742604d661c58f7ed1c96482cd23503ae69069961821bf6ea66adb,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/convert_docx_with_word.ps1,1029,26133ca771e01cae02dbca404255d844c5a489162670376ea3120135b049b5f9,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/editor_response_30run.yaml,896,f1f427700b24b24b5adeff60941d0aec41cc29738b2c648cca4ba5e6a29f7c00,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/environment.yml,291,c196ec0def003607d295548c05af8cf4e748ea60bc7f895b52c845defbc196a4,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/experiment.py,19879,8839b6aa070f45765247ee78e3f45f1ddcbfbaee2b792c73503ad9736dd3ec7c,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/model.py,13325,9cab909e691bc650cbccc39f33f6860f976798b1e52eeb18f288a217d181d7ab,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/package_editor_response.py,8239,5a7764d15d9faef1781ee0fe18d768423f3e96b25523c5b7bf83ed933782b04a,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/pyproject.toml,736,93ca0722f102f8fca84b7c36e8ea55c21499a9e53c92b693e85f40977825fccc,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/requirements-dev.txt,35,d4b8739e40a82c0f18ecf4dd632361b5b7023e1abaec5e60091f2ffba9d5ff0b,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+code/requirements.txt,104,ad8e842a3e1579e54862a9d4bc3c2eee63dc12d767967b2600b267aac41e0116,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/coefficient_matrix_248_rows.csv,118946,b413b56ceeb8a6dc7ac5280cc6fed39b94763646c0ec57829745ca9b2be35a3b,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/derivation_rules.csv,1841,59eedd2eb0427ea3c40c1060b82ca9efdfee55bfc72de075bf21e7ed36cd9938,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/national_constraints.csv,1913,39b7e69e517a1d3195ce307675a83db087f06bfa4a127e38415df2970a5c7445,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/official_2024_panel.csv,11339,81ceb2b3d3582e53474a95d5931666b52afe8c95ddd69a3b147dd84f03a209db,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/province_inputs.csv,16994,506b24ea57f31bad8993097ea4997681ce320d113f96f3c713dc3a22cd9925bd,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/public_data_qc.csv,1275,32fbde78ad7505e650e817997427473026a9861e1bf0199fb098a688f932e58c,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/sector_mode_coefficients.csv,1377,6e0683f441ee60bfd883bc6f9ab44b9608970b4d1dfdd4b4c3a05bd58232aff8,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/reconstructed/variable_dictionary.csv,3027,21b48989c5deab0ea0f7860b852e6f4cc6ada8b2f811c134c33c419b299e907d,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/moa_2024_detailed_fishery_statistics.csv,39132,652b65ff60185f08c168a5b9b76c45f1d98e94a30a57f553e477071c52671b97,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/moa_fishery_environment_2024.csv,5407,b992a40935d8ee474833cc8fc3ae1ae4b954b0579da9ba00885f5a515a0b4130,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/moa_national_fishery_statistics.csv,17510,e690d7b409647d02db78a61fe71e1c19055250dd8f404fab454eb720dddaa46b,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/nbs_2024_31_province_public_panel.csv,11398,14f91e43d05d9abb2e899ecfdb057a2d0cb75297dcd3ae79e5ae42d0fb71f6c2,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/nbs_2024_31_province_public_panel_dictionary.csv,4711,05a589d62d9743e43fd9383890c8a6665202327664aadb997284465a2b40144f,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/nbs_2024_national_benchmarks.csv,2638,cb98e851902a9de7f159c31cab568a2f91c4ff099b9cb4cdaa5ccbc093dce75d,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/official_2023_summary.csv,1591,87e04e7cdab286564718e59642c27ad0907eb280f3c779a1e23f37622f920008,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/official_latest_aquatic_products_2025.csv,2791,1a5a97238db8bdc6ae7165d31c3373461402bed60d248e8b26a3564a50e7fd68,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/source_catalog.csv,11455,b30e2d1d2e2f71c84d22660045c52d8298e0cbf32ac93b34c1173e11efb03692,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/table_1_decision_indices.csv,260,f15e35459d5067b795bb899138cc09bdb56f965c26137abfcee0761c71bd7916,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/table_2_economic_welfare.csv,944,80b399acc934a4469cc9b09206b3fd05b25bc1eb24b26ceab711d7a60a2860df,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/table_3_capacity_constraints.csv,923,56e419f4e6978bd34137d0014732e004da3a4b36816bfcbcbd22114c1ea56860,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/table_4_algorithm_parameters.csv,832,6a79e99628c9c12b90cf4e3796d7999ae719f5b23f0477bad486a561d53486c9,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+data/source/world_bank_fao_china_fisheries_2014_2023.csv,10130,06eee71edd6c6c332f7852ae8ce37399146cbcbc27b7bf559aecf9bcbef55887,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/article_figure3_calibrated/figure_03_calibrated_30run_metrics.csv,44955,d688ae91228c6e9122e7092c47090b97a2e1a009d760762644182c3ad15db3b5,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/article_figure3_calibrated/generation_code_calibrated.py,9627,96d0e3c23775427176b02f49cf5adea9dc31a9a14c722988c0328699cdfd1852,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/algorithm_summary.csv,980,94845c88055fc2d9a5da7da5995c9131a64d3d440f313e0f995fcf25ec512e51,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/config_snapshot.yaml,896,f1f427700b24b24b5adeff60941d0aec41cc29738b2c648cca4ba5e6a29f7c00,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/final_population_decision_vectors.csv,27619354,de35afa5d5a4a37c136caa0bfd0fe38c9498f1f0721db67226371b018e7baab9,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/final_population_objectives_constraints.csv,2138121,2da999132c1aa039473ee3a0d1a7b04451589901bc8dcf0486e9c24e8ab8cb16,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/generation_log.csv,694116,802405ef83099dd94238e1827b2a2ed5810adc4c6cc07facc061207a3bc137cb,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/metric_definition.json,751,7482820fc5c7ca5318cb471c714fabe531710b6dbbe608b504e9653c8927a482,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/metric_recomputation_check.csv,24980,91c5d5ca50435346b48e4f7c2809402d77568639b0a10065beef141c487e54c2,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/pooled_reference_front.csv,27816,5823f9817d76e44e6ae958283e3fe62eb827cf6b94adb95c1fd561ce1707b4ec,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/reference_relocation_log.csv,4232,eb7eb1542d80f6b38d20ef8283f8f214305a797c796e56d7330ff57cc2963031,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/run_metadata.json,3546,b5e4083476654616f3c864437d6082466ad9c955b19f15b9a6939a1ab0ae8624,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+runs/new_30run_surrogate/run_summary.csv,24712,b33a202e94f2435dd83f3b2e1e720c8eac26c60eb31a1b5426c8f678310de1be,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself
+workbook_payload.json,532343,798d23dd69eebe1419b084abbf4bcbd03675f84c71f4133a6f0cc44ee3009825,text_lf,Text hashes use canonical LF line endings; binary hashes use raw bytes; manifest excludes itself

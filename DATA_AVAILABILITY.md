@@ -37,7 +37,7 @@ item-by-item inventory and auditable replacements are in `editor_response/`.
 | Exact article transcription | `data/paper/` | Values printed in article Tables 1–4 |
 | Manuscript figure source | `data/processed/manuscript_figures/` | Panels directly extracted from the supplied DOCX with hashes |
 | Processed plotting data | `results/data/` | Reconstructed values used for code-generated comparison plots |
-| Official public data | `data/public/` | World Bank/FAO, Ministry and statistical-bureau data with provenance |
+| Official public data | `data/public/` | World Bank/FAO, Ministry data and a six-table NBS 2024 panel for all 31 province-level regions, with provenance |
 | Limited independent checks | `data/verified/` | Official national values used for cross-checking |
 | Public-data surrogate outputs | `results/experiments/processed_demo/` | New executable runs, not author-run logs |
 | Unavailable author inputs | Not in repository | Province-level coefficients and original run logs not published |
@@ -62,8 +62,10 @@ in `data/public/source_catalog.csv`.
 - China Fisheries Statistical Yearbook volumes are not redistributed because
   they are commercial/copyrighted publications.
 - The NBS province-level A0407 endpoint returned HTTP 403 during automated
-  retrieval. No third-party or paywalled replacement values are presented as
-  official NBS downloads.
+  retrieval. The replacement panel instead transcribes six directly accessible
+  official *China Statistical Yearbook 2025* tables, including Table 12-15 for
+  31-province aquatic-product output. No third-party or paywalled values are
+  presented as official NBS downloads.
 - Article-derived images and table values remain subject to the article’s CC BY
   terms and attribution requirements.
 

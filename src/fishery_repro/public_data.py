@@ -963,6 +963,59 @@ def source_catalog(retrieved_on: str | None = None) -> pd.DataFrame:
             },
         ]
     )
+    nbs_2024_tables = [
+        (
+            "02_05",
+            "Population at Year-end by Region",
+            "https://www.stats.gov.cn/sj/ndsj/2025/html/E02-05.jpg",
+            "Social/demographic proxy; national total includes military personnel excluded from province rows.",
+        ),
+        (
+            "06_18",
+            "Per Capita Disposable Income of Households by Region",
+            "https://www.stats.gov.cn/sj/ndsj/2025/html/E06-18.jpg",
+            "Economic proxy; not a fishery-specific wage series.",
+        ),
+        (
+            "08_10",
+            "Main Pollutant Contents Discharged in Wastewater by Region",
+            "https://www.stats.gov.cn/sj/ndsj/2025/html/E08-10.jpg",
+            "Preliminary general wastewater data; not fishery water-quality measurements.",
+        ),
+        (
+            "12_15",
+            "Output of Aquatic Products",
+            "https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg",
+            "Primary public production backbone: marine/freshwater and capture/aquaculture.",
+        ),
+        (
+            "16_13",
+            "Freight Traffic by Region",
+            "https://www.stats.gov.cn/sj/ndsj/2025/html/E16-13.jpg",
+            "Economy-wide logistics proxy; national total includes freight not classified by region.",
+        ),
+        (
+            "16_39",
+            "Informatization and E-Commerce of Enterprises by Region",
+            "https://www.stats.gov.cn/sj/ndsj/2025/html/E16-39.jpg",
+            "External digital/marketing proxy; not the paper's unreleased fishery EWM index.",
+        ),
+    ]
+    for table_id, title, url, note in nbs_2024_tables:
+        rows.append(
+            {
+                "source_id": f"nbs_yearbook_2025_table_{table_id}",
+                "publisher": "National Bureau of Statistics of China",
+                "dataset": title,
+                "coverage": "31 province-level regions, 2024",
+                "url": url,
+                "access": "Official yearbook table downloaded and manually transcribed",
+                "license_or_terms": "Official website terms apply; numerical facts extracted with attribution",
+                "repository_file": "data/public/nbs_2024_31_province_public_panel.csv",
+                "retrieved_on": date,
+                "notes": note,
+            }
+        )
     return pd.DataFrame(rows)
 
 

@@ -1,0 +1,16 @@
+metric,value,unit,year,source_table,source_url,note
+aquatic_total,7357.6,10 000 tonnes,2024,12-15 Output of Aquatic Products,https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg,National printed value.
+marine_total,3708.9,10 000 tonnes,2024,12-15 Output of Aquatic Products,https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg,National printed value.
+marine_capture,1181.2,10 000 tonnes,2024,12-15 Output of Aquatic Products,https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg,National printed value.
+marine_aquaculture,2527.6,10 000 tonnes,2024,12-15 Output of Aquatic Products,https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg,National printed value.
+freshwater_total,3648.7,10 000 tonnes,2024,12-15 Output of Aquatic Products,https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg,National printed value.
+freshwater_capture,116.3,10 000 tonnes,2024,12-15 Output of Aquatic Products,https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg,National printed value.
+freshwater_aquaculture,3532.4,10 000 tonnes,2024,12-15 Output of Aquatic Products,https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg,National printed value.
+population,140828,10 000 persons,2024,2-5 Population at Year-end by Region,https://www.stats.gov.cn/sj/ndsj/2025/html/E02-05.jpg,Includes military personnel excluded from provincial rows.
+disposable_income,41314,yuan per person,2024,6-18 Per Capita Disposable Income of Households by Region,https://www.stats.gov.cn/sj/ndsj/2025/html/E06-18.jpg,National average; it is not the arithmetic mean of provincial values.
+wastewater_cod,27998827,tonnes,2024,8-10 Main Pollutant Contents Discharged in Wastewater by Region (2024),https://www.stats.gov.cn/sj/ndsj/2025/html/E08-10.jpg,Preliminary.
+wastewater_total_phosphorus,390481,tonnes,2024,8-10 Main Pollutant Contents Discharged in Wastewater by Region (2024),https://www.stats.gov.cn/sj/ndsj/2025/html/E08-10.jpg,Preliminary.
+freight_total,5783625,10 000 tonnes,2024,16-13 Freight Traffic by Region (2024),https://www.stats.gov.cn/sj/ndsj/2025/html/E16-13.jpg,Includes 97072 not classified by region.
+enterprises,1605346,units,2024,16-39 Informatization and E-Commerce of Enterprises by Region (2024),https://www.stats.gov.cn/sj/ndsj/2025/html/E16-39.jpg,National printed value.
+ecommerce_enterprises,205026,units,2024,16-39 Informatization and E-Commerce of Enterprises by Region (2024),https://www.stats.gov.cn/sj/ndsj/2025/html/E16-39.jpg,National printed value.
+ecommerce_sales,386544.0,100 million yuan,2024,16-39 Informatization and E-Commerce of Enterprises by Region (2024),https://www.stats.gov.cn/sj/ndsj/2025/html/E16-39.jpg,National printed value.

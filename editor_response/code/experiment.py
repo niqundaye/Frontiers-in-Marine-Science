@@ -450,6 +450,27 @@ def run_experiment(
             "objectives": list(OBJECTIVE_NAMES),
             "constraints": list(CONSTRAINT_NAMES),
         },
+        "input_provenance": {
+            "official_public_panel": problem.public_panel_path.relative_to(
+                Path(__file__).resolve().parents[2]
+            ).as_posix(),
+            "official_public_panel_sha256": hashlib.sha256(
+                problem.public_panel_path.read_bytes()
+            ).hexdigest(),
+            "model_source_sha256": hashlib.sha256(
+                (Path(__file__).resolve().parent / "model.py").read_bytes()
+            ).hexdigest(),
+            "official_reference_year": 2024,
+            "primary_official_table": "NBS China Statistical Yearbook 2025, Table 12-15",
+            "primary_official_url": "https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg",
+            "official_31province_four_sector_sum_tonnes": float(
+                problem.observed_2024_sector_tonnes.sum()
+            ),
+            "paper_2023_national_anchor_tonnes": 71_161_716.0,
+            "paper_calibration_factor": float(problem.paper_calibration_factor),
+            "assumed_mode_shares_fresh_deep": problem.mode_share_by_sector.tolist(),
+            "classification": "official public observations plus processed/calibrated model inputs; not historical author input",
+        },
         "output_rows": {
             "generation_log": len(generations),
             "relocation_log": len(relocations),

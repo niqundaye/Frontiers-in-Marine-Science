@@ -3,8 +3,11 @@
   "status": "PASS",
   "checks": {
     "province_rows_equal_31": true,
+    "official_public_rows_equal_31": true,
     "coefficient_rows_equal_248": true,
     "region_share_sums_to_one": true,
+    "official_four_sector_sum_matches_matrix": true,
+    "public_national_reconciliation_passes": true,
     "all_matrix_rows_marked_non_original": true,
     "four_algorithms_present": true,
     "thirty_runs_per_algorithm": true,
@@ -15,19 +18,22 @@
     "calibrated_figure3_has_30_per_algorithm_metric": true,
     "workbook_present": true,
     "response_docx_present": true,
-    "response_pdf_present": true
+    "response_pdf_present": true,
+    "public_calibration_method_present": true
   },
   "counts": {
     "province_rows": 31,
+    "official_public_rows": 31,
     "coefficient_rows": 248,
+    "public_data_qc_rows": 14,
     "algorithms": 4,
     "new_run_rows": 120,
     "generation_rows": 3600,
     "calibrated_metric_rows": 240
   },
   "maximum_metric_recalculation_difference": {
-    "hv": 1.1102230246251563e-16,
-    "igd": 2.220446049250313e-16
+    "hv": 5.551115123125783e-17,
+    "igd": 9.714451465470121e-17
   },
   "disclosure": "PASS verifies package consistency only; it does not convert reconstructed/new material into historical original data."
 }

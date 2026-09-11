@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
+import pandas as pd
 from pymoo.core.problem import Problem
 from pymoo.core.repair import Repair
 from pymoo.core.sampling import Sampling
@@ -24,37 +27,117 @@ CONSTRAINT_NAMES = (
     "fleet_power",
 )
 
+DEFAULT_PUBLIC_PANEL = (
+    Path(__file__).resolve().parents[2]
+    / "data"
+    / "public"
+    / "nbs_2024_31_province_public_panel.csv"
+)
+PAPER_2023_TOTAL_TONNES = 71_161_716.0
+PAPER_2023_CAPTURE_TONNES = 13_065_600.0
+PAPER_2023_FLEET_POWER_KW = 18_940_154.0
+
+
+def _minmax(values: np.ndarray, *, log1p: bool = False) -> np.ndarray:
+    transformed = np.log1p(values) if log1p else values.astype(float)
+    span = transformed.max() - transformed.min()
+    if span <= 0:
+        return np.zeros_like(transformed)
+    return (transformed - transformed.min()) / span
+
 
 class FisheryPPMSProblem(Problem):
     """A public-data surrogate for the article's unreleased 248-variable model.
 
-    The structure follows Equations 1-7. Coefficients that the article does not
-    publish are deterministic proxies and must be replaced for strict author-level
+    The structure follows Equations 1-7. Regional-sector baselines use the
+    official NBS 2024 31-province aquatic-product table and are uniformly scaled
+    to the paper's disclosed 2023 national total.  Province-by-mode shares and
+    other coefficients that the article does not publish are deterministic,
+    explicitly documented proxies and must be replaced for strict author-level
     reproduction.
     """
 
-    def __init__(self, seed: int = 1809036):
+    def __init__(
+        self,
+        seed: int = 1809036,
+        public_panel_path: str | Path | None = None,
+    ):
         super().__init__(n_var=N_VARIABLES, n_obj=3, n_ieq_constr=7, xl=0.0, xu=1.0)
-        rng = np.random.default_rng(seed)
-        raw_region = np.linspace(1.5, 0.45, N_REGIONS) * rng.uniform(0.82, 1.18, N_REGIONS)
-        self.region_share = raw_region / raw_region.sum()
+        self.seed = seed
+        self.public_panel_path = Path(public_panel_path or DEFAULT_PUBLIC_PANEL).resolve()
+        panel = pd.read_csv(self.public_panel_path)
+        if len(panel) != N_REGIONS or panel["province_code"].nunique() != N_REGIONS:
+            raise ValueError("The official public panel must contain exactly 31 unique province rows")
+        self.public_panel = panel.copy()
 
-        sector_share = np.array([0.135, 0.049, 0.337, 0.479])
-        mode_share = np.array([0.69, 0.31])
-        baseline_total = 71_161_716.0
-        self.ub_amount = (
-            baseline_total
-            * 1.20
-            * self.region_share[:, None, None]
-            * sector_share[None, :, None]
-            * mode_share[None, None, :]
+        sector_columns = [
+            "marine_capture_10000_t",
+            "freshwater_capture_10000_t",
+            "marine_aquaculture_10000_t",
+            "freshwater_aquaculture_10000_t",
+        ]
+        self.observed_2024_sector_tonnes = panel[sector_columns].to_numpy(float) * 10_000.0
+        observed_sum = self.observed_2024_sector_tonnes.sum()
+        self.paper_calibration_factor = PAPER_2023_TOTAL_TONNES / observed_sum
+        self.calibrated_sector_tonnes = self.observed_2024_sector_tonnes * self.paper_calibration_factor
+        self.region_share = self.calibrated_sector_tonnes.sum(axis=1) / PAPER_2023_TOTAL_TONNES
+
+        # The article does not disclose province-by-mode observations.  These
+        # four sector-specific splits are declared reconstruction assumptions.
+        # Column order is fresh sales, deep processing.
+        self.mode_share_by_sector = np.array(
+            [[0.62, 0.38], [0.67, 0.33], [0.74, 0.26], [0.78, 0.22]],
+            dtype=float,
+        )
+        self.baseline_sector_mode_tonnes = (
+            self.calibrated_sector_tonnes[:, :, None]
+            * self.mode_share_by_sector[None, :, :]
+        )
+        self.ub_amount = self.baseline_sector_mode_tonnes * 1.20
+
+        population_share = panel["population_10000_persons"].to_numpy(float)
+        population_share /= population_share.sum()
+        labour_weight = 0.75 * self.region_share + 0.25 * population_share
+        self.workforce = 11_762_300.0 * labour_weight / labour_weight.sum()
+
+        adoption = (
+            panel["ecommerce_enterprises_units"].to_numpy(float)
+            / panel["enterprises_units"].to_numpy(float)
+        )
+        sales_per_enterprise = (
+            panel["ecommerce_sales_100m_yuan"].to_numpy(float)
+            / panel["enterprises_units"].to_numpy(float)
+        )
+        digital_composite = 0.60 * _minmax(adoption) + 0.40 * _minmax(
+            sales_per_enterprise,
+            log1p=True,
+        )
+        self.ecommerce_adoption_rate = adoption
+        self.digital_index = 0.25 + 0.70 * digital_composite
+
+        freight = panel["freight_total_10000_tonnes"].to_numpy(float)
+        self.freight_index = _minmax(freight, log1p=True)
+        calibrated_region_tonnes = self.calibrated_sector_tonnes.sum(axis=1)
+        self.cold_capacity = np.maximum(
+            calibrated_region_tonnes * (0.18 + 0.22 * self.freight_index),
+            1.0,
         )
 
-        coastal = np.linspace(1.0, 0.15, N_REGIONS)
-        self.digital_index = np.clip(0.35 + 0.55 * coastal + rng.normal(0, 0.04, N_REGIONS), 0.25, 0.95)
-        self.workforce = 11_762_300 * self.region_share * rng.uniform(0.85, 1.15, N_REGIONS)
-        self.cold_capacity = baseline_total * self.region_share * np.clip(0.12 + 0.33 * coastal, 0.12, 0.45)
-        self.power_capacity = 18_940_154 * self.region_share * rng.uniform(0.92, 1.08, N_REGIONS)
+        capture_tonnes = self.calibrated_sector_tonnes[:, CAPTURE_SECTORS].sum(axis=1)
+        power_weight = capture_tonnes + 0.05 * calibrated_region_tonnes
+        self.power_capacity = PAPER_2023_FLEET_POWER_KW * power_weight / power_weight.sum()
+
+        income = panel["disposable_income_yuan"].to_numpy(float)
+        self.income_multiplier = np.clip(income / 41_314.0, 0.65, 1.45)
+        self.social_need_multiplier = np.clip(41_314.0 / income, 0.65, 1.45)
+        population = panel["population_10000_persons"].to_numpy(float)
+        pollutant_intensity = (
+            panel["wastewater_cod_tonnes"].to_numpy(float)
+            + 20.0 * panel["wastewater_total_phosphorus_tonnes"].to_numpy(float)
+        ) / population
+        self.ecological_pressure_index = _minmax(pollutant_intensity, log1p=True)
+        self.ecological_quality_multiplier = 1.0 - 0.35 * self.ecological_pressure_index
+        self.logistics_cost_multiplier = 1.15 - 0.30 * self.freight_index
 
         self.income_coeff = np.array(
             [[0.65, 0.82], [0.70, 0.86], [0.84, 1.02], [0.88, 1.06]], dtype=float
@@ -70,15 +153,26 @@ class FisheryPPMSProblem(Problem):
         )
         self.power_coeff = np.array([1.00, 0.70, 0.11, 0.08])
 
-        self.catch_limit = 13_065_600.0
-        self.total_limit = baseline_total * 1.10
-        self.processing_limit = baseline_total * 0.37
-        self.minimum_supply = baseline_total * 0.58
-        self.power_limit = 18_940_154.0
+        self.catch_limit = PAPER_2023_CAPTURE_TONNES
+        self.total_limit = PAPER_2023_TOTAL_TONNES * 1.10
+        self.processing_limit = PAPER_2023_TOTAL_TONNES * 0.37
+        self.minimum_supply = PAPER_2023_TOTAL_TONNES * 0.58
+        self.power_limit = PAPER_2023_FLEET_POWER_KW
 
         max_amount = self.ub_amount
-        self.f1_scale = np.sum(max_amount * self.income_coeff[None, :, :] / self.workforce[:, None, None])
-        net_value = self.value_coeff[None, :, :] * self.digital_index[:, None, None] - self.cost_coeff[None, :, :]
+        self.f1_scale = np.sum(
+            max_amount
+            * self.income_coeff[None, :, :]
+            * self.social_need_multiplier[:, None, None]
+            / self.workforce[:, None, None]
+        )
+        net_value = (
+            self.value_coeff[None, :, :]
+            * self.digital_index[:, None, None]
+            * self.income_multiplier[:, None, None]
+            - self.cost_coeff[None, :, :]
+            * self.logistics_cost_multiplier[:, None, None]
+        )
         self.f2_scale = max(np.sum(max_amount * np.maximum(net_value, 0)), 1.0)
 
     def decode(self, X: np.ndarray) -> np.ndarray:
@@ -105,10 +199,25 @@ class FisheryPPMSProblem(Problem):
         processed_by_region = amount[:, :, :, PROCESSING_MODE].sum(axis=2)
         processed_total = processed_by_region.sum(axis=1)
 
-        social = (amount * self.income_coeff[None, None, :, :] / self.workforce[None, :, None, None]).sum(axis=(1, 2, 3)) / self.f1_scale
-        net_value = self.value_coeff[None, None, :, :] * self.digital_index[None, :, None, None] - self.cost_coeff[None, None, :, :]
+        social = (
+            amount
+            * self.income_coeff[None, None, :, :]
+            * self.social_need_multiplier[None, :, None, None]
+            / self.workforce[None, :, None, None]
+        ).sum(axis=(1, 2, 3)) / self.f1_scale
+        net_value = (
+            self.value_coeff[None, None, :, :]
+            * self.digital_index[None, :, None, None]
+            * self.income_multiplier[None, :, None, None]
+            - self.cost_coeff[None, None, :, :]
+            * self.logistics_cost_multiplier[None, :, None, None]
+        )
         economic = (amount * net_value).sum(axis=(1, 2, 3)) / self.f2_scale
-        eco_weighted = (amount * self.eco_coeff[None, None, :, :]).sum(axis=(1, 2, 3)) / np.maximum(total, 1.0)
+        eco_weighted = (
+            amount
+            * self.eco_coeff[None, None, :, :]
+            * self.ecological_quality_multiplier[None, :, None, None]
+        ).sum(axis=(1, 2, 3)) / np.maximum(total, 1.0)
         ecological = np.clip(0.72 * eco_weighted + 0.28 * (1 - capture / self.catch_limit), 0, 1)
         objectives = np.column_stack([social, economic, ecological])
 

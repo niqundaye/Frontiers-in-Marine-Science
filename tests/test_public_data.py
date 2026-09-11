@@ -113,3 +113,36 @@ def test_latest_official_snapshot_reconciles_national_and_zhejiang_totals():
     assert zhejiang.total_aquatic_products == (
         zhejiang.marine_products + zhejiang.freshwater_products
     )
+
+
+def test_nbs_2024_public_panel_has_31_rows_sources_and_reconciled_totals():
+    panel = pd.read_csv(PUBLIC / "nbs_2024_31_province_public_panel.csv")
+    benchmarks = pd.read_csv(PUBLIC / "nbs_2024_national_benchmarks.csv").set_index(
+        "metric"
+    )
+    assert len(panel) == 31
+    assert panel.province_code.nunique() == 31
+    assert panel.year.eq(2024).all()
+    assert panel.data_status.str.contains("official public data", regex=False).all()
+    assert abs(panel.aquatic_total_10000_t.sum() - benchmarks.loc["aquatic_total", "value"]) <= 0.3
+    assert abs(panel.marine_capture_10000_t.sum() - benchmarks.loc["marine_capture", "value"]) <= 0.3
+    assert abs(panel.freshwater_capture_10000_t.sum() - benchmarks.loc["freshwater_capture", "value"]) <= 0.3
+    assert panel.freight_total_10000_tonnes.sum() + 97072 == benchmarks.loc[
+        "freight_total", "value"
+    ]
+    assert panel.enterprises_units.sum() == benchmarks.loc["enterprises", "value"]
+    assert panel.ecommerce_enterprises_units.sum() == benchmarks.loc[
+        "ecommerce_enterprises", "value"
+    ]
+
+
+def test_source_catalog_includes_six_official_nbs_2024_tables():
+    catalog = source_catalog("2026-09-11")
+    selected = catalog[catalog.source_id.str.startswith("nbs_yearbook_2025_table_")]
+    assert len(selected) == 6
+    assert selected.repository_file.eq(
+        "data/public/nbs_2024_31_province_public_panel.csv"
+    ).all()
+    assert selected.url.str.startswith(
+        "https://www.stats.gov.cn/sj/ndsj/2025/html/"
+    ).all()

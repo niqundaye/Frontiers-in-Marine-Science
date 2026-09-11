@@ -20,9 +20,23 @@ def test_reconstructed_matrix_dimensions_and_labels():
     assert len(matrix) == 248
     assert len(coefficients) == 8
     assert matrix["variable_id"].is_unique
+    assert abs(provinces["region_share_processed"].sum() - 1.0) < 1e-12
+    assert matrix["official_2024_sector_tonnes"].ge(0).all()
     assert set(matrix["data_status"]) == {
         "calibrated reconstruction; not historical author input"
     }
+
+
+def test_editor_package_contains_public_panel_derivation_rules_and_qc():
+    source = pd.read_csv(
+        PACKAGE / "data" / "source" / "nbs_2024_31_province_public_panel.csv"
+    )
+    rules = pd.read_csv(PACKAGE / "data" / "reconstructed" / "derivation_rules.csv")
+    qc = pd.read_csv(PACKAGE / "data" / "reconstructed" / "public_data_qc.csv")
+    assert len(source) == 31
+    assert len(rules) >= 9
+    assert qc.result.eq("PASS").all()
+    assert (PACKAGE / "06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md").exists()
 
 
 def test_new_surrogate_run_counts_and_metric_recomputation():

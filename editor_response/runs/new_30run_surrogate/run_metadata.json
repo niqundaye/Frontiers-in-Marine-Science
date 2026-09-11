@@ -57,9 +57,9 @@
     "data_status": "经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs"
   },
   "data_status": "经过处理的数据 / newly executed 30-run surrogate verification; not original author-run logs",
-  "started_utc": "2026-09-11T02:32:59.547008+00:00",
-  "completed_utc": "2026-09-11T02:34:29.580870+00:00",
-  "wall_clock_seconds": 90.033862,
+  "started_utc": "2026-09-11T04:42:46.527771+00:00",
+  "completed_utc": "2026-09-11T04:44:18.504943+00:00",
+  "wall_clock_seconds": 91.977172,
   "config_sha256": "f1f427700b24b24b5adeff60941d0aec41cc29738b2c648cca4ba5e6a29f7c00",
   "runtime": {
     "python": "3.12.13",
@@ -91,6 +91,36 @@
       "minimum_supply",
       "fleet_power"
     ]
+  },
+  "input_provenance": {
+    "official_public_panel": "data/public/nbs_2024_31_province_public_panel.csv",
+    "official_public_panel_sha256": "14f91e43d05d9abb2e899ecfdb057a2d0cb75297dcd3ae79e5ae42d0fb71f6c2",
+    "model_source_sha256": "9cab909e691bc650cbccc39f33f6860f976798b1e52eeb18f288a217d181d7ab",
+    "official_reference_year": 2024,
+    "primary_official_table": "NBS China Statistical Yearbook 2025, Table 12-15",
+    "primary_official_url": "https://www.stats.gov.cn/sj/ndsj/2025/html/E12-15.jpg",
+    "official_31province_four_sector_sum_tonnes": 73575000.0,
+    "paper_2023_national_anchor_tonnes": 71161716.0,
+    "paper_calibration_factor": 0.9671996738022426,
+    "assumed_mode_shares_fresh_deep": [
+      [
+        0.62,
+        0.38
+      ],
+      [
+        0.67,
+        0.33
+      ],
+      [
+        0.74,
+        0.26
+      ],
+      [
+        0.78,
+        0.22
+      ]
+    ],
+    "classification": "official public observations plus processed/calibrated model inputs; not historical author input"
   },
   "output_rows": {
     "generation_log": 3600,

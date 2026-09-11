@@ -1,5 +1,7 @@
 ﻿parameter,value,unit,role,source,data_status
 baseline_total,71161716.0,tonnes,2023 production anchor,Paper Table 3,article transcription
+nbs_2024_31province_sector_sum,73575000.0,tonnes,official public regional-sector backbone,NBS 2025 Table 12-15,official public 2024 NBS transcription; not historical author input
+paper_calibration_factor,0.9671996738022426,ratio,scale 2024 public sector pattern to the paper's 2023 national production anchor,"71,161,716 / sum of four NBS provincial sectors",calibrated reconstruction; not historical author input
 catch_limit,13065600.0,tonnes,national capture constraint in surrogate,Model proxy aligned to 2023 national total capture,calibrated reconstruction; not historical author input
 total_limit,78277887.60000001,tonnes,110% of production anchor,deterministic model rule,calibrated reconstruction; not historical author input
 processing_limit,26329834.919999998,tonnes,37% of production anchor,deterministic model rule,calibrated reconstruction; not historical author input

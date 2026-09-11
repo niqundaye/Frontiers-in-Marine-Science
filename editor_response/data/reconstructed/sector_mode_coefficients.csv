@@ -1,9 +1,9 @@
-﻿sector_id,sector_en,sector_zh,mode_id,mode_en,mode_zh,income_coefficient_proxy,marginal_value_coefficient_proxy,supply_chain_cost_coefficient_proxy,ecological_weight_proxy,fleet_power_coefficient_proxy,data_status
-1,marine_capture,海洋捕捞,1,fresh_sales,鲜销,0.65,0.62,0.29,0.28,1.0,calibrated reconstruction; not historical author input
-1,marine_capture,海洋捕捞,2,deep_processing,深加工,0.82,0.95,0.36,0.31,1.0,calibrated reconstruction; not historical author input
-2,freshwater_capture,淡水捕捞,1,fresh_sales,鲜销,0.7,0.67,0.26,0.42,0.7,calibrated reconstruction; not historical author input
-2,freshwater_capture,淡水捕捞,2,deep_processing,深加工,0.86,0.99,0.34,0.45,0.7,calibrated reconstruction; not historical author input
-3,marine_aquaculture,海水养殖,1,fresh_sales,鲜销,0.84,0.8,0.33,0.78,0.11,calibrated reconstruction; not historical author input
-3,marine_aquaculture,海水养殖,2,deep_processing,深加工,1.02,1.16,0.41,0.81,0.11,calibrated reconstruction; not historical author input
-4,freshwater_aquaculture,淡水养殖,1,fresh_sales,鲜销,0.88,0.84,0.31,0.88,0.08,calibrated reconstruction; not historical author input
-4,freshwater_aquaculture,淡水养殖,2,deep_processing,深加工,1.06,1.2,0.39,0.91,0.08,calibrated reconstruction; not historical author input
+﻿sector_id,sector_en,sector_zh,mode_id,mode_en,mode_zh,assumed_mode_share,income_coefficient_proxy,marginal_value_coefficient_proxy,supply_chain_cost_coefficient_proxy,ecological_weight_proxy,fleet_power_coefficient_proxy,data_status
+1,marine_capture,海洋捕捞,1,fresh_sales,鲜销,0.62,0.65,0.62,0.29,0.28,1.0,calibrated reconstruction; not historical author input
+1,marine_capture,海洋捕捞,2,deep_processing,深加工,0.38,0.82,0.95,0.36,0.31,1.0,calibrated reconstruction; not historical author input
+2,freshwater_capture,淡水捕捞,1,fresh_sales,鲜销,0.67,0.7,0.67,0.26,0.42,0.7,calibrated reconstruction; not historical author input
+2,freshwater_capture,淡水捕捞,2,deep_processing,深加工,0.33,0.86,0.99,0.34,0.45,0.7,calibrated reconstruction; not historical author input
+3,marine_aquaculture,海水养殖,1,fresh_sales,鲜销,0.74,0.84,0.8,0.33,0.78,0.11,calibrated reconstruction; not historical author input
+3,marine_aquaculture,海水养殖,2,deep_processing,深加工,0.26,1.02,1.16,0.41,0.81,0.11,calibrated reconstruction; not historical author input
+4,freshwater_aquaculture,淡水养殖,1,fresh_sales,鲜销,0.78,0.88,0.84,0.31,0.88,0.08,calibrated reconstruction; not historical author input
+4,freshwater_aquaculture,淡水养殖,2,deep_processing,深加工,0.22,1.06,1.2,0.39,0.91,0.08,calibrated reconstruction; not historical author input

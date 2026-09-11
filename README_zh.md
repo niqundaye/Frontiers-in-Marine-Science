@@ -24,6 +24,11 @@
 > 严格数值复制。论文没有公开 31 省完整系数矩阵、区域 TAC、数字化指数底层输入、
 > 收入/成本系数和原始 30 次运行日志。本仓库不会伪造这些材料。
 
+`editor_response/` 已加入国家统计局《中国统计年鉴 2025》六张表的 2024 年
+31 省公开数据面板，覆盖水产品四部门产量、人口、收入、废水污染物、货运和企业
+电商。官方原值与“经过处理/校准”的248维模型输入严格分层；反向校准公式和假设
+见 `editor_response/06_PUBLIC_DATA_AND_REVERSE_CALIBRATION_METHOD.md`。
+
 ## 审稿人快速验证
 
 建议使用 Python 3.12。
@@ -52,9 +57,9 @@ py -3.12 -m venv .venv
 | 论文表 1–4 | `data/paper/`、`implementations/table_*` | 精确转录并自动校验 |
 | 论文图 1–10 | `data/processed/manuscript_figures/`、`results/figures/` | 从 DOCX 直接提取，保留映射和 SHA-256 |
 | 图 2–10 绘图数据 | `results/data/`、`implementations/figure_*` | 依据论文曲线和数值锚点整理的经过处理的数据 |
-| 248 维 PPMS 模型 | `src/fishery_repro/model.py` | 可执行的结构复现 |
-| 三种算法实验 | `src/fishery_repro/experiment.py` | 固定随机种子、显式算子、逐代日志和最终解 |
-| 全国公开数据核验 | `data/public/`、`src/fishery_repro/public_data.py` | 确定性解析，保留单位、网址、日期和网页哈希 |
+| 248 维 PPMS 模型 | `src/fishery_repro/model.py` | 以官方2024省级四部门产量为骨架的可执行结构复现 |
+| 四种算法实验 | `src/fishery_repro/experiment.py` | 固定随机种子、显式算子、逐代日志和最终解 |
+| 31省公开数据核验 | `data/public/`、`src/fishery_repro/public_data.py` | 六张国家统计局表，保留单位、网址、日期和全国合计核验 |
 | 作者未公开输入及原始日志 | 论文未提供 | 明确标记为缺失，不作为作者数据进行插补 |
 
 所有重建或新生成记录均标注为“经过处理的数据”或“公开数据代理实验”。
@@ -84,6 +89,7 @@ py -3.12 -m venv .venv
 - 农业农村部 2024 年 99 条详细渔业数据；
 - 2024 年 12 条渔业生态环境数据；
 - 2025 年全国与浙江 6 条最新水产品数据；
+- 2024 年31省生产、社会、经济、生态、物流和数字化公开指标及全国合计核验；
 - 包级验证报告和全仓库 SHA-256 清单。
 
 ## 仓库结构

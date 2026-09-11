@@ -1,0 +1,10 @@
+﻿step,output,formula,inputs,evidence_class,limitation
+1,official_2024_sector_tonnes,"NBS Table 12-15 value x 10,000",six official NBS province tables,official public data,2024 replacement evidence; not the historical model workbook
+2,paper_calibrated_sector_tonnes,"official sector tonnes x 71,161,716 / official 31-province sector sum",NBS 2024 sector pattern + paper Table 3 total,processed/calibrated,Assumes the 2024 spatial-sector pattern is an acceptable proxy for 2023
+3,baseline_sector_mode_processed_tonnes,calibrated sector tonnes x declared fresh/deep mode share,step 2 + four stated mode splits,processed/calibrated,Province-by-mode historical data are unavailable
+4,upper_bound_processed_tonnes,1.20 x baseline sector-mode tonnes,step 3,processed/calibrated,The 20% headroom is a public-surrogate modelling choice
+5,digital_index_processed,0.25 + 0.70 x weighted min-max e-commerce composite,NBS enterprise counts and e-commerce sales,processed proxy,External enterprise proxy; not the paper's unreleased fishery EWM index
+6,economic/social multipliers,income / national average and its inverse; clipped,NBS per-capita disposable income,processed proxy,Household income is not a fishery-specific wage series
+7,ecological_pressure_index_processed,min-max log of (COD + 20 x phosphorus) per population,NBS preliminary wastewater and population data,processed proxy,General wastewater pressure is not fishery habitat condition
+8,freight/cold-chain fields,log-minmax freight; production x (0.18 + 0.22 x freight index),NBS freight + calibrated production,processed proxy,Freight is economy-wide and cold-chain capacity remains inferred
+9,workforce/power fields,national anchors distributed by disclosed weights,paper/MOA anchors + public production and population,processed proxy,No original province allocation file was retained
